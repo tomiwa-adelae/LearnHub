@@ -39,10 +39,6 @@ const userSchema = new mongoose.Schema(
 				default: [],
 			},
 		],
-		gender: {
-			type: String,
-			enum: ["male", "female"],
-		},
 		isLecturer: {
 			type: Boolean,
 			required: true,

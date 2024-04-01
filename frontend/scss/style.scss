@@ -1,0 +1,70 @@
+@import "config";
+@import "utilities";
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	min-height: 100vh;
+	line-height: 1.7;
+	font-size: 15px;
+	font-family: "Joti One", serif;
+	background-image: linear-gradient(
+		to right bottom,
+		darken($primary-color, 5%),
+		$primary-color,
+		darken($primary-color, 10%)
+	);
+}
+
+header {
+	// background-color: red;
+	padding: 1rem 0;
+	// border-bottom: 2px dotted lighten($primary-color, 10%);
+	// box-shadow: rgba(darken($primary-color, 20%), 0.24) 0px 3px 8px;
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.logo {
+			h4 {
+				span {
+					opacity: $opacity;
+					@include transition();
+				}
+
+				&:hover {
+					span {
+						color: $secondary-color;
+					}
+				}
+			}
+		}
+
+		.links {
+			ul {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				// gap-: 1rem;
+
+				a {
+					padding: 0.5rem;
+					margin-left: 1rem;
+					opacity: $opacity;
+					@include transition();
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}

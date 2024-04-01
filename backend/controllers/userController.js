@@ -27,7 +27,6 @@ const authUser = asyncHandler(async (req, res) => {
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
 			courses: user.courses,
-			gender: user.gender,
 			isLecturer: user.isLecturer,
 		});
 	} else {
@@ -41,9 +40,17 @@ const authUser = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-	const { name, email, matricNumber, password } = req.body;
+	const { name, email, matricNumber, password, department, faculty } =
+		req.body;
 
-	if (!name || !email || !matricNumber || !password) {
+	if (
+		!name ||
+		!email ||
+		!matricNumber ||
+		!department ||
+		!faculty ||
+		!password
+	) {
 		res.status(400);
 		throw new Error("Please enter all fields!");
 	}
@@ -74,10 +81,17 @@ const registerUser = asyncHandler(async (req, res) => {
 		throw new error("User with email already exists!");
 	}
 
+	// Get User's initials and make it to an avatar for the profile picture
+	var matches = name.match(/\b(\w)/g);
+	var acronym = matches.join("");
+
 	const user = await User.create({
 		name,
 		email,
 		matricNumber,
+		department,
+		faculty,
+		profilePicture: `https://api.dicebear.com/8.x/initials/svg?seed=${name}`,
 		password,
 	});
 
@@ -93,7 +107,6 @@ const registerUser = asyncHandler(async (req, res) => {
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
 			courses: user.courses,
-			gender: user.gender,
 			isLecturer: user.isLecturer,
 		});
 	} else {
