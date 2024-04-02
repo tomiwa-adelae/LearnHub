@@ -1,0 +1,21 @@
+.homepage {
+	padding: 4rem 0;
+	.container {
+		text-align: center;
+		margin: auto;
+		// margin-top: 4rem;
+
+		// background-color: red;
+
+		h1,
+		h2 {
+			font-family: "Joti One";
+			line-height: 1.4;
+		}
+
+		p {
+			width: 80%;
+			margin: 2rem auto;
+		}
+	}
+}

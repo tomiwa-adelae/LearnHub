@@ -1,5 +1,8 @@
 @import "config";
 @import "utilities";
+@import "homepage";
+@import "loginpage";
+@import "registerpage";
 
 * {
 	padding: 0;
@@ -12,20 +15,23 @@ body {
 	min-height: 100vh;
 	line-height: 1.7;
 	font-size: 15px;
-	font-family: "Joti One", serif;
+	font-family: "Montserrat", serif;
+	font-weight: 400;
 	background-image: linear-gradient(
 		to right bottom,
-		darken($primary-color, 5%),
-		$primary-color,
-		darken($primary-color, 10%)
+		darken($white-color, 3%),
+		$white-color,
+		darken($white-color, 5%)
 	);
+	color: $black-color;
+	position: relative;
 }
 
 header {
 	// background-color: red;
 	padding: 1rem 0;
-	// border-bottom: 2px dotted lighten($primary-color, 10%);
-	// box-shadow: rgba(darken($primary-color, 20%), 0.24) 0px 3px 8px;
+	// border-bottom: 2px dotted $primary-color;
+	// box-shadow: rgba($primary-color, 0.14) 0px 3px 8px;
 
 	.container {
 		display: flex;
@@ -34,14 +40,17 @@ header {
 
 		.logo {
 			h4 {
+				color: $primary-color;
+				font-family: "Joti One";
 				span {
+					color: $black-color;
 					opacity: $opacity;
 					@include transition();
 				}
 
 				&:hover {
 					span {
-						color: $secondary-color;
+						color: $primary-color;
 					}
 				}
 			}
@@ -52,16 +61,18 @@ header {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				// gap-: 1rem;
 
 				a {
+					font-size: 13px;
 					padding: 0.5rem;
 					margin-left: 1rem;
 					opacity: $opacity;
+					font-weight: bold;
 					@include transition();
 
 					&:hover {
 						opacity: 1;
+						color: $primary-color;
 					}
 				}
 			}

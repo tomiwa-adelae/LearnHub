@@ -1,6 +1,6 @@
 a {
 	text-decoration: none;
-	color: $white-color;
+	color: $black-color;
 }
 
 li {
@@ -23,6 +23,14 @@ img {
 	transition: all ease-out 0.5s;
 }
 
+.text-primary {
+	color: $primary-color;
+}
+
+.text-opacity {
+	opacity: $opacity;
+}
+
 h1 {
 	font-size: 5rem;
 }
@@ -40,9 +48,165 @@ h4 {
 }
 
 h5 {
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 
 h6 {
 	font-size: 0.8rem;
+}
+
+// Button
+.btn {
+	outline: none;
+	border: none;
+	padding: 1rem 2rem;
+	font-size: 0.9rem;
+	cursor: pointer;
+	border-radius: $radius;
+	font-family: "Joti One";
+	text-align: center;
+	display: inline-block;
+	@include transition();
+
+	svg {
+		font-size: 1.5rem;
+		vertical-align: middle;
+		animation: moveX 3s infinite;
+	}
+
+	&-primary {
+		background-color: $primary-color;
+		color: $white-color;
+
+		&:hover {
+			background-color: darken($primary-color, 10%);
+		}
+	}
+
+	&-white {
+		background-color: $white-color;
+		color: $secondary-color;
+
+		&:hover {
+			background-color: darken($white-color, 3%);
+		}
+	}
+
+	@keyframes moveX {
+		0% {
+			transform: translateX(0%);
+		}
+		50% {
+			transform: translateX(30%);
+		}
+		100% {
+			transform: translateX(0%);
+		}
+	}
+}
+
+.ball {
+	border-radius: 100%;
+	z-index: -1;
+	background-color: rgba($primary-color, 0.8);
+	border-radius: 100%;
+	position: absolute;
+
+	&-sm {
+		width: 2.5rem;
+		height: 2.5rem;
+		bottom: 10%;
+		left: 4%;
+		transform: translate(-4%, 10%);
+	}
+
+	&-md {
+		width: 4rem;
+		height: 4rem;
+		top: 3%;
+		right: 4%;
+		transform: translate(-4%, 3%);
+	}
+
+	&-lg {
+		width: 9rem;
+		height: 9rem;
+		top: 30%;
+		right: 30%;
+		transform: translate(-30%, -30%);
+	}
+
+	&-2xl {
+		width: 11rem;
+		height: 11rem;
+		top: 45%;
+		left: 30%;
+		transform: translate(-30%, -45%);
+	}
+}
+
+// Form and Inputs & Label
+form {
+	div {
+		margin: 0.5rem 0;
+		position: relative;
+
+		label {
+			font-size: 0.7rem;
+			font-weight: bold;
+		}
+
+		input,
+		select {
+			width: 100%;
+			font-family: "Montserrat";
+			border: none;
+			outline: none;
+			font-weight: bold;
+			font-size: 0.8rem;
+			padding: 1rem 0 1rem 2.5rem;
+			border-radius: $radius;
+			background-color: lighten($primary-color, 10%);
+			color: $white-color;
+			box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+
+			&::placeholder {
+				color: rgba($white-color, $opacity);
+				font-weight: lighter;
+			}
+		}
+
+		svg {
+			position: absolute;
+			top: 76%;
+			left: 3%;
+			transform: translate(-3%, -76%);
+			font-size: 1.3rem;
+			vertical-align: middle;
+			opacity: $opacity;
+		}
+
+		.password {
+			cursor: pointer;
+			top: 76%;
+			left: 97%;
+			transform: translate(-97%, -76%);
+			font-size: 1.5rem;
+			vertical-align: middle;
+			opacity: $opacity;
+			@include transition();
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	.btn {
+		width: 100%;
+	}
+
+	a {
+		color: $white-color;
+	}
 }
