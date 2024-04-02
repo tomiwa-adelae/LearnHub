@@ -3,13 +3,14 @@
 
 	.container {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-around;
 		gap: 2rem;
 
 		section {
 			text-align: center;
 			font-family: "Joti One";
+			margin-top: 20vh;
 		}
 
 		form {

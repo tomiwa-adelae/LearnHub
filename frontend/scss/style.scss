@@ -3,6 +3,7 @@
 @import "homepage";
 @import "loginpage";
 @import "registerpage";
+@import "dashboardpage";
 
 * {
 	padding: 0;
@@ -77,5 +78,14 @@ header {
 				}
 			}
 		}
+	}
+}
+
+footer {
+	padding: 1rem 0;
+	font-weight: bold;
+
+	span {
+		font-family: "Joti One";
 	}
 }

@@ -1,0 +1,74 @@
+.dashboardpage {
+	padding: 2rem 0 4rem 0;
+	.container {
+		.search-bar {
+			form {
+				.btn {
+					width: inherit;
+				}
+			}
+
+			.searchable-courses {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 1rem;
+				text-align: center;
+				padding: 2rem 0;
+				div {
+					background-color: coral;
+					cursor: pointer;
+					box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+					display: inline-block;
+					padding: 1rem 0;
+					border-radius: $radius;
+				}
+			}
+		}
+
+		.my-courses {
+			// background-color: aqua;
+			padding-top: 3rem;
+			text-align: center;
+			.head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 2rem;
+
+				h4 {
+					font-family: "Joti One";
+				}
+			}
+
+			.courses {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1rem;
+				.course {
+					background-color: #6bf568;
+					border-radius: $radius;
+					text-align: center;
+					width: 100%;
+					padding: 2rem;
+					box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					flex-direction: column;
+					min-height: 250px;
+
+					h5 {
+						font-family: "Joti One";
+						text-transform: uppercase;
+					}
+
+					div {
+						h6 {
+							margin-top: 1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}
