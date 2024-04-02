@@ -45,6 +45,7 @@
 				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 				gap: 1rem;
 				.course {
+					cursor: pointer;
 					background-color: #6bf568;
 					border-radius: $radius;
 					text-align: center;

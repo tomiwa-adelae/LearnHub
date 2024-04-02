@@ -60,6 +60,14 @@ const LoginPage = () => {
 						Login
 						<IoLogInSharp />
 					</button>
+					<small>
+						<span className="text-opacity">
+							Forgot your password?
+						</span>{" "}
+						<Link to="/reset-password">
+							<strong>Reset password</strong>
+						</Link>
+					</small>
 				</form>
 			</div>
 		</div>

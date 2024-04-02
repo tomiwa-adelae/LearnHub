@@ -9,6 +9,10 @@ const MyCourses = () => {
 				<button className="btn btn-primary">
 					<MdPostAdd /> Add courses
 				</button>
+				{/* If logged in as a lecturer */}
+				{/* <button className="btn btn-primary">
+					<MdPostAdd /> New courses
+				</button> */}
 			</div>
 
 			<div className="courses">

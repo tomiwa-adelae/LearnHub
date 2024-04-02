@@ -4,10 +4,9 @@ import { IoEyeOffSharp, IoEyeSharp, IoLogInSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
-import { MdOutlineNumbers } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 
-const RegisterPage = () => {
+const RegisterLecturerPage = () => {
 	const [showPassword, setShowPassword] = useState(false);
 
 	return (
@@ -22,7 +21,7 @@ const RegisterPage = () => {
 					</h3>
 				</section>
 				<form>
-					<h4>Register</h4>
+					<h4>Register as a lecturer</h4>
 					<small>
 						<span className="text-opacity">
 							Already have an account?
@@ -46,19 +45,7 @@ const RegisterPage = () => {
 						<MdEmail />
 					</div>
 					<div>
-						<label htmlFor="matricNumber">
-							Matriculation/Admission number
-						</label>
-						<input
-							type="text"
-							placeholder="20J03001"
-							id="matricNumber"
-						/>
-						<MdOutlineNumbers />
-					</div>
-					<div>
 						<label htmlFor="department">Department</label>
-
 						<select name="department" id="department">
 							<option value="">Select department</option>
 							<option value="Mathematics">Mathematics</option>
@@ -128,10 +115,8 @@ const RegisterPage = () => {
 						<IoLogInSharp />
 					</button>
 					<small>
-						<span className="text-opacity">
-							Are you a lecturer?
-						</span>{" "}
-						<Link to="/register-lecturer">
+						<span className="text-opacity">Are you a student?</span>{" "}
+						<Link to="/register">
 							<strong>Register here</strong>
 						</Link>
 					</small>
@@ -141,4 +126,4 @@ const RegisterPage = () => {
 	);
 };
 
-export default RegisterPage;
+export default RegisterLecturerPage;

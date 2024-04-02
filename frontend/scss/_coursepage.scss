@@ -1,0 +1,72 @@
+.coursepage {
+	padding: 2rem 0;
+	.container {
+		.course-head {
+			font-family: "Joti One";
+			border: 2px dotted #6bf568;
+			box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+			border-radius: $radius;
+			padding: 2rem;
+
+			h5 {
+				margin-bottom: 1rem;
+
+				&:last-child {
+					margin-bottom: 0rem;
+				}
+			}
+		}
+
+		.course-materials {
+			padding-top: 3rem;
+			text-align: center;
+
+			.head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 2rem;
+
+				h4 {
+					font-family: "Joti One";
+				}
+			}
+
+			.materials {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1rem;
+
+				.material {
+					border: 2px dotted #6bf568;
+					box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+					border-radius: $radius;
+					padding: 2rem;
+
+					.pdf-icon {
+						font-size: 6rem;
+						color: $primary-color;
+						margin-bottom: 2rem;
+					}
+
+					h5 {
+						font-family: "Joti One";
+						color: $primary-color;
+					}
+
+					h6 {
+						margin: 0.5rem 0;
+					}
+
+					div {
+						margin-top: 2rem;
+						.btn {
+							width: 100%;
+							margin-top: 0.5rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}

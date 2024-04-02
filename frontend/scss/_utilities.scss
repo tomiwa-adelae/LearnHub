@@ -87,6 +87,15 @@ h6 {
 		}
 	}
 
+	&-secondary {
+		background-color: $secondary-color;
+		color: $white-color;
+
+		&:hover {
+			background-color: darken($secondary-color, 10%);
+		}
+	}
+
 	&-white {
 		background-color: $white-color;
 		color: $secondary-color;
@@ -160,6 +169,7 @@ h6 {
 // Form and Inputs & Label
 form {
 	position: relative;
+	min-width: 400px;
 	div {
 		margin: 0.5rem 0;
 		position: relative;
