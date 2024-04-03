@@ -13,6 +13,9 @@ import NewCoursePage from "./pages/NewCoursePage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import VerifyCodePage from "./pages/VerifyCodePage";
 import UpdatePasswordPage from "./pages/UpdatePasswordPage";
+import ProfilePage from "./pages/ProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 function App() {
 	return (
@@ -35,6 +38,12 @@ function App() {
 				<Route
 					path="/update-password"
 					element={<UpdatePasswordPage />}
+				/>
+				<Route path="/profile" element={<ProfilePage />} />
+				<Route path="/edit-profile" element={<EditProfilePage />} />
+				<Route
+					path="/change-password"
+					element={<ChangePasswordPage />}
 				/>
 			</Routes>
 			<Footer />
