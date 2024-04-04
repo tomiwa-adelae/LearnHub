@@ -130,6 +130,10 @@ h6 {
 		transform: translate(-0%, -50%);
 		padding: 0.5rem 2rem;
 		margin-right: 0.2rem;
+
+		svg {
+			font-size: 1rem;
+		}
 	}
 
 	@keyframes moveX {
@@ -296,5 +300,26 @@ form {
 				}
 			}
 		}
+	}
+}
+
+/* dark mode looking scrollbar */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+	background: $grey-color;
+}
+
+::-webkit-scrollbar-thumb {
+	background: $primary-color;
+	border-radius: $radius;
+	cursor: grab;
+
+	&:hover {
+		background-color: darken($primary-color, 10%);
 	}
 }

@@ -13,6 +13,7 @@
 @import "profilepage";
 @import "editprofilepage";
 @import "changepasswordpage";
+@import "chatpage";
 
 * {
 	padding: 0;
@@ -35,6 +36,7 @@ body {
 	);
 	color: $black-color;
 	position: relative;
+	overflow-x: hidden;
 }
 
 header {
@@ -42,6 +44,7 @@ header {
 	padding: 1rem 0;
 	// border-bottom: 2px dotted $primary-color;
 	// box-shadow: rgba($primary-color, 0.14) 0px 3px 8px;
+	height: 90px;
 
 	.container {
 		display: flex;

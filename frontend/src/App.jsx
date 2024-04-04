@@ -16,6 +16,7 @@ import UpdatePasswordPage from "./pages/UpdatePasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
 	return (
@@ -45,8 +46,9 @@ function App() {
 					path="/change-password"
 					element={<ChangePasswordPage />}
 				/>
+				<Route path="/chat" element={<ChatPage />} />
 			</Routes>
-			<Footer />
+			{/* <Footer /> */}
 			<div className="ball ball-md"></div>
 			<div className="ball ball-lg"></div>
 			<div className="ball ball-2xl"></div>

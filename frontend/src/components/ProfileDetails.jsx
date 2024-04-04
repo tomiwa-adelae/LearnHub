@@ -2,6 +2,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { IoMdLock } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ProfileDetails = () => {
 	return (
@@ -18,12 +19,12 @@ const ProfileDetails = () => {
 				</div>
 
 				<div>
-					<button className="btn btn-grey">
+					<Link to="/edit-profile" className="btn btn-grey">
 						<MdEditSquare /> Edit profile
-					</button>
-					<button className="btn btn-secondary">
+					</Link>
+					<Link to="/change-password" className="btn btn-secondary">
 						<IoMdLock /> Change password
-					</button>
+					</Link>
 					<button className="btn btn-danger">
 						<IoLogOut /> Logout
 					</button>
