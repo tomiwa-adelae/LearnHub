@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import "./styles/style.css";
+
+import { pdfjs } from "react-pdf";
+
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -17,6 +20,11 @@ import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ChatPage from "./pages/ChatPage";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+	"pdfjs-dist/build/pdf.worker.min.js",
+	import.meta.url
+).toString();
 
 function App() {
 	return (

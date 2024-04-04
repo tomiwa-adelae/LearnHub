@@ -136,6 +136,10 @@ h6 {
 		}
 	}
 
+	&-small {
+		padding: 0.5rem 2rem;
+	}
+
 	@keyframes moveX {
 		0% {
 			transform: translateX(0%);
@@ -321,5 +325,72 @@ form {
 
 	&:hover {
 		background-color: darken($primary-color, 10%);
+	}
+}
+
+.courses-modal {
+	background-color: rgba($black-color, 0.7);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.wrapper {
+		background-color: #e5b283;
+		width: 70%;
+		max-width: 1224px;
+		height: 90vh;
+		margin: auto;
+		padding: 3rem;
+		border-radius: $radius;
+		color: $white-color;
+		box-shadow: rgba($primary-color, 0.14) 0px 1px 8px;
+		overflow-y: scroll;
+		// height: ;
+
+		.head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 0.5rem;
+
+			h4 {
+				font-family: "Joti One";
+			}
+		}
+
+		form {
+			margin-top: 1rem;
+			.btn {
+				width: inherit;
+			}
+		}
+
+		.courses {
+			margin-top: 2rem;
+			.course {
+				background-color: #f59c68;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.3rem 0.3rem 0.3rem 1rem;
+				border-radius: $radius;
+				font-family: "Joti One";
+				margin: 0.5rem 0;
+				box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+
+				.details {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					// background-color: blueviolet;
+					gap: 0.5rem;
+				}
+			}
+		}
 	}
 }

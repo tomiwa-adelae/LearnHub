@@ -4,8 +4,8 @@ import NoChatSelected from "./NoChatSelected";
 const MessageContainer = () => {
 	return (
 		<div className="message-container">
-			{/* <NoChatSelected /> */}
-			<ChatSelected />
+			<NoChatSelected />
+			{/* <ChatSelected /> */}
 		</div>
 	);
 };

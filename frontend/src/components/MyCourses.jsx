@@ -1,37 +1,41 @@
 import { MdPostAdd } from "react-icons/md";
 import Course from "./Course";
+import CoursesModal from "./CoursesModal";
 
 const MyCourses = () => {
 	return (
-		<div className="my-courses">
-			<div className="head">
-				<h4 className="text-primary">My Courses</h4>
-				<button className="btn btn-primary">
-					<MdPostAdd /> Add courses
-				</button>
-				{/* If logged in as a lecturer */}
-				{/* <button className="btn btn-primary">
+		<>
+			<div className="my-courses">
+				<div className="head">
+					<h4 className="text-primary">My Courses</h4>
+					<button className="btn btn-primary">
+						<MdPostAdd /> Add courses
+					</button>
+					{/* If logged in as a lecturer */}
+					{/* <button className="btn btn-primary">
 					<MdPostAdd /> New courses
 				</button> */}
-			</div>
+				</div>
 
-			<div className="courses">
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
-				<Course />
+				<div className="courses">
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+					<Course />
+				</div>
 			</div>
-		</div>
+			{/* <CoursesModal /> */}
+		</>
 	);
 };
 

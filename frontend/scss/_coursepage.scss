@@ -69,4 +69,44 @@
 			}
 		}
 	}
+
+	.pdf-display {
+		background-color: rgba($black-color, 0.7);
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.wrapper {
+			background-color: #e5b283;
+			// width: 100%;
+			max-width: 1224px;
+			height: 90vh;
+			margin: auto;
+			padding: 3rem;
+			border-radius: $radius;
+			color: $white-color;
+			box-shadow: rgba($primary-color, 0.14) 0px 1px 8px;
+			overflow-y: scroll;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-direction: column;
+
+			.btn {
+				position: fixed;
+				top: 2%;
+				right: 2%;
+				transform: translate(-2%, -2%);
+			}
+		}
+	}
+
+	canvas.react-pdf__Page__canvas {
+		margin-bottom: 1rem;
+	}
 }

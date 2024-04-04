@@ -74,6 +74,7 @@ header {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				// background-color: burlywood;
 
 				a {
 					font-size: 13px;
@@ -82,6 +83,12 @@ header {
 					opacity: $opacity;
 					font-weight: bold;
 					@include transition();
+
+					svg {
+						font-size: 2rem;
+						vertical-align: middle;
+						margin-right: 0.5rem;
+					}
 
 					&:hover {
 						opacity: 1;
@@ -96,6 +103,7 @@ header {
 footer {
 	padding: 1rem 0;
 	font-weight: bold;
+	text-align: left;
 
 	span {
 		font-family: "Joti One";
