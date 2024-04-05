@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const DashboardPage = () => {
-	const navigate = useNavigate();
-	const { userInfo } = useSelector((state) => state.auth);
+	// const navigate = useNavigate();
+	// const { userInfo } = useSelector((state) => state.auth);
 
-	useEffect(() => {
-		if (!userInfo) {
-			navigate("/login");
-		}
-	}, [userInfo]);
+	// useEffect(() => {
+	// 	if (!userInfo) {
+	// 		navigate("/login");
+	// 	}
+	// }, [userInfo]);
 
 	return (
 		<>

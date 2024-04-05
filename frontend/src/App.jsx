@@ -20,6 +20,7 @@ import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ChatPage from "./pages/ChatPage";
+import PrivateRoute from "./components/PrivateRoute";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	"pdfjs-dist/build/pdf.worker.min.js",
@@ -38,23 +39,26 @@ function App() {
 					path="/register-lecturer"
 					element={<RegisterLecturerPage />}
 				/>
-				<Route path="/dashboard" element={<DashboardPage />} />
-				<Route path="/course" element={<CoursePage />} />
-				<Route path="/new-pdf" element={<NewPDFPage />} />
-				<Route path="/new-course" element={<NewCoursePage />} />
 				<Route path="/reset-password" element={<ResetPasswordPage />} />
 				<Route path="/verify-code" element={<VerifyCodePage />} />
 				<Route
 					path="/update-password"
 					element={<UpdatePasswordPage />}
 				/>
-				<Route path="/profile" element={<ProfilePage />} />
-				<Route path="/edit-profile" element={<EditProfilePage />} />
-				<Route
-					path="/change-password"
-					element={<ChangePasswordPage />}
-				/>
-				<Route path="/chat" element={<ChatPage />} />
+				{/* Protected routes */}
+				<Route path="" element={<PrivateRoute />}>
+					<Route path="/dashboard" element={<DashboardPage />} />
+					<Route path="/course" element={<CoursePage />} />
+					<Route path="/new-pdf" element={<NewPDFPage />} />
+					<Route path="/new-course" element={<NewCoursePage />} />
+					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/edit-profile" element={<EditProfilePage />} />
+					<Route
+						path="/change-password"
+						element={<ChangePasswordPage />}
+					/>
+					<Route path="/chat" element={<ChatPage />} />
+				</Route>
 			</Routes>
 			{/* <Footer /> */}
 			<div className="ball ball-md"></div>

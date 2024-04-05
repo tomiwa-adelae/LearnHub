@@ -29,7 +29,10 @@ const Header = () => {
 									<PiChatsFill /> <span>Chats</span>
 								</Link>
 								<Link to="/profile">
-									<img src={userInfo.profilePicture} />
+									<img
+										src={userInfo.profilePicture}
+										alt={userInfo.name}
+									/>
 									<span>{userInfo.name}</span>
 								</Link>
 							</>

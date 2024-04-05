@@ -4,18 +4,21 @@ import { IoLogOut } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ userInfo }) => {
 	return (
 		<div className="profile-details">
-			<FaCircleUser className="user-icon text-primary" />
+			<img src={userInfo.profilePicture} alt={userInfo.name} />
 
 			<section>
 				<div className="details">
-					<h3 className="text-primary">John Doe</h3>
-					<h6>johndoe@gmail.com</h6>
-					<h6>Matriculation/Admission number of 20T07011</h6>
-					<h6>Department of Computer science</h6>
-					<h6>Faculty of Natural science</h6>
+					<h3 className="text-primary">{userInfo.name}</h3>
+					<h6>{userInfo.email}</h6>
+					<h6>
+						Matriculation/Admission number of{" "}
+						{userInfo.matricNumber}
+					</h6>
+					<h6>Department of {userInfo.department}</h6>
+					<h6>Faculty of {userInfo.faculty}</h6>
 				</div>
 
 				<div>
