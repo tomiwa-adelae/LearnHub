@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { IoArrowForwardCircleSharp } from "react-icons/io5";
+import { useEffect } from "react";
 
 const HomePage = () => {
 	return (

@@ -5,8 +5,29 @@ import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import { useLoginMutation } from "../slices/userApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { useDispatch } from "react-redux";
+
 const LoginPage = () => {
+	const dispatch = useDispatch();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+
+	const [login, { isLoading }] = useLoginMutation();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const res = await login({ email, password }).unwrap();
+			dispatch(setCredentials({ ...res }));
+			console.log(res);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
@@ -22,7 +43,7 @@ const LoginPage = () => {
 							<span className="text-primary">Anywhere</span>
 						</h3>
 					</section>
-					<form>
+					<form onSubmit={handleSubmit}>
 						<h4>Login</h4>
 						<small>
 							<span className="text-opacity">New user?</span>{" "}
@@ -36,6 +57,8 @@ const LoginPage = () => {
 								type="email"
 								placeholder="johndoe@gmail.com"
 								id="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 							<MdEmail />
 						</div>
@@ -45,6 +68,8 @@ const LoginPage = () => {
 								type={showPassword ? "text" : "password"}
 								placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 								id="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 							<IoMdLock />
 							{showPassword ? (
