@@ -1,31 +1,46 @@
-import { IoLogInSharp, IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
+import { IoLogIn, IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import { useLoginMutation } from "../slices/userApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastSuccessMessage } from "../components/ToastMessage";
+import { useNavigate } from "react-router-dom";
+import SmallLoader from "../components/Loader";
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
 
 	const [login, { isLoading }] = useLoginMutation();
 
+	const { userInfo } = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		if (userInfo) {
+			navigate("/dashboard");
+		}
+	}, [navigate, userInfo]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setShowAlertMessage(null);
 
 		try {
 			const res = await login({ email, password }).unwrap();
 			dispatch(setCredentials({ ...res }));
-			console.log(res);
+
+			navigate("/dashboard");
 		} catch (error) {
-			console.log(error);
+			setShowAlertMessage(error.data.message);
 		}
 	};
 
@@ -89,8 +104,14 @@ const LoginPage = () => {
 							)}
 						</div>
 						<button className="btn btn-white">
-							Login
-							<IoLogInSharp />
+							{isLoading ? (
+								<SmallLoader />
+							) : (
+								<>
+									Login
+									<IoLogIn />
+								</>
+							)}
 						</button>
 						<small>
 							<span className="text-opacity">
@@ -103,6 +124,9 @@ const LoginPage = () => {
 					</form>
 				</div>
 			</div>
+			{showAlertMessage && (
+				<ToastSuccessMessage message={showAlertMessage} />
+			)}
 			<Footer />
 		</>
 	);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMdLock } from "react-icons/io";
-import { IoEyeOffSharp, IoEyeSharp, IoLogInSharp } from "react-icons/io5";
+import { IoEyeOffSharp, IoEyeSharp, IoLogIn } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
@@ -112,7 +112,7 @@ const RegisterLecturerPage = () => {
 					</div>
 					<button className="btn btn-white">
 						Register
-						<IoLogInSharp />
+						<IoLogIn />
 					</button>
 					<small>
 						<span className="text-opacity">Are you a student?</span>{" "}

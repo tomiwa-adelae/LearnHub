@@ -394,3 +394,46 @@ form {
 		}
 	}
 }
+
+// Alert message
+.toast-success-message {
+	text-align: center;
+	position: fixed;
+	top: 3%;
+	left: 50%;
+	transform: translate(-50%, -3%);
+	z-index: 5;
+
+	h6 {
+		background-color: $danger-color;
+		color: $white-color;
+		border-radius: $radius;
+		display: inline-block;
+		padding: 1rem;
+		min-width: 300px;
+		box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
+	}
+}
+
+// Loader
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.small-loader {
+		border: 3px solid $grey-color;
+		border-left-color: $secondary-color;
+		border-top-color: $secondary-color;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		animation: spin 1s linear infinite;
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+	}
+}

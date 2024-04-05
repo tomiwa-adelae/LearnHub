@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
-import { IoEyeOffSharp, IoEyeSharp, IoLogInSharp } from "react-icons/io5";
+import { IoEyeOffSharp, IoEyeSharp, IoLogIn } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
@@ -8,8 +8,57 @@ import { MdOutlineNumbers } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import Footer from "../components/Footer";
 
+import { useRegisterMutation } from "../slices/userApiSlice";
+import { ToastSuccessMessage } from "../components/ToastMessage";
+import SmallLoader from "../components/Loader";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../slices/authSlice";
+import { useNavigate } from "react-router-dom";
+
 const RegisterPage = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [matricNumber, setMatricNumber] = useState("");
+	const [department, setDepartment] = useState("");
+	const [faculty, setFaculty] = useState("");
+	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
+
+	const [register, { isLoading }] = useRegisterMutation();
+
+	const { userInfo } = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		if (userInfo) {
+			navigate("/dashboard");
+		}
+	}, [navigate, userInfo]);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setShowAlertMessage(null);
+
+		try {
+			const res = await register({
+				name,
+				email,
+				matricNumber,
+				department,
+				faculty,
+				password,
+			}).unwrap();
+			dispatch(setCredentials({ ...res }));
+
+			navigate("/dashboard");
+		} catch (error) {
+			setShowAlertMessage(error.data.message);
+		}
+	};
 
 	return (
 		<>
@@ -25,7 +74,7 @@ const RegisterPage = () => {
 							<span className="text-primary">Anywhere</span>
 						</h3>
 					</section>
-					<form>
+					<form onSubmit={handleSubmit}>
 						<h4>Register</h4>
 						<small>
 							<span className="text-opacity">
@@ -41,6 +90,8 @@ const RegisterPage = () => {
 								type="text"
 								placeholder="John Doe"
 								id="name"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
 							/>
 							<FaCircleUser />
 						</div>
@@ -50,6 +101,8 @@ const RegisterPage = () => {
 								type="email"
 								placeholder="johndoe@gmail.com"
 								id="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 							<MdEmail />
 						</div>
@@ -61,13 +114,22 @@ const RegisterPage = () => {
 								type="text"
 								placeholder="20J03001"
 								id="matricNumber"
+								value={matricNumber}
+								onChange={(e) =>
+									setMatricNumber(e.target.value)
+								}
 							/>
 							<MdOutlineNumbers />
 						</div>
 						<div>
 							<label htmlFor="department">Department</label>
 
-							<select name="department" id="department">
+							<select
+								name="department"
+								id="department"
+								value={department}
+								onChange={(e) => setDepartment(e.target.value)}
+							>
 								<option value="">Select department</option>
 								<option value="Mathematics">Mathematics</option>
 								<option value="Mechanical Engineering">
@@ -89,7 +151,12 @@ const RegisterPage = () => {
 						<div>
 							<label htmlFor="faculty">Faculty</label>
 
-							<select name="faculty" id="faculty">
+							<select
+								name="faculty"
+								id="faculty"
+								value={faculty}
+								onChange={(e) => setFaculty(e.target.value)}
+							>
 								<option value="">Select faculty</option>
 								<option value="Agriculture">Agriculture</option>
 								<option value="Basic Medical Science">
@@ -119,6 +186,8 @@ const RegisterPage = () => {
 								type={showPassword ? "text" : "password"}
 								placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 								id="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 							<IoMdLock />
 							{showPassword ? (
@@ -138,8 +207,14 @@ const RegisterPage = () => {
 							)}
 						</div>
 						<button className="btn btn-white">
-							Register
-							<IoLogInSharp />
+							{isLoading ? (
+								<SmallLoader />
+							) : (
+								<>
+									Register
+									<IoLogIn />
+								</>
+							)}
 						</button>
 						<small>
 							<span className="text-opacity">
@@ -152,6 +227,9 @@ const RegisterPage = () => {
 					</form>
 				</div>
 			</div>
+			{showAlertMessage && (
+				<ToastSuccessMessage message={showAlertMessage} />
+			)}
 			<Footer />
 		</>
 	);
