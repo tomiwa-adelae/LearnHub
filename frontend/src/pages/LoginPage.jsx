@@ -9,7 +9,7 @@ import { setCredentials } from "../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastErrorMessage } from "../components/ToastMessage";
 import { useNavigate } from "react-router-dom";
-import SmallLoader from "../components/Loader";
+import { SmallLoader } from "../components/Loader";
 
 const LoginPage = () => {
 	const dispatch = useDispatch();

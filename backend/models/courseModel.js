@@ -22,6 +22,10 @@ const courseSchema = new mongoose.Schema(
 		courseColor: {
 			type: String,
 		},
+		coursePDFs: {
+			type: Array,
+			default: [],
+		},
 	},
 	{ timestamps: true }
 );

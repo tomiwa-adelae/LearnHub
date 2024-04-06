@@ -8,7 +8,7 @@ import { FcDepartment } from "react-icons/fc";
 
 import { useRegisterLecturerMutation } from "../slices/userApiSlice";
 import { ToastErrorMessage } from "../components/ToastMessage";
-import SmallLoader from "../components/Loader";
+import { SmallLoader } from "../components/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
@@ -54,6 +54,7 @@ const RegisterLecturerPage = () => {
 			navigate("/dashboard");
 		} catch (error) {
 			setShowAlertMessage(error.data.message);
+			console.log(error);
 		}
 	};
 

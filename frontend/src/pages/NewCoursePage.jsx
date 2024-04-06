@@ -7,7 +7,11 @@ import { useNewCourseMutation } from "../slices/courseApiSlice";
 import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
 import { createCourse } from "../slices/courseSlice";
-import { ToastSuccessMessage } from "../components/ToastMessage";
+import {
+	ToastErrorMessage,
+	ToastSuccessMessage,
+} from "../components/ToastMessage";
+import { SmallLoader } from "../components/Loader";
 
 const NewCoursePage = () => {
 	const dispatch = useDispatch();
@@ -108,8 +112,14 @@ const NewCoursePage = () => {
 						</div>
 
 						<button className="btn btn-white">
-							Create
-							<IoCreate />
+							{isLoading ? (
+								<SmallLoader />
+							) : (
+								<>
+									Create
+									<IoCreate />
+								</>
+							)}
 						</button>
 					</form>
 				</div>

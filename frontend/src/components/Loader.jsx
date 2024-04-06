@@ -8,4 +8,12 @@ const SmallLoader = () => {
 	);
 };
 
-export default SmallLoader;
+const LargeLoader = () => {
+	return (
+		<div className="loader">
+			<div className="large-loader"></div>
+		</div>
+	);
+};
+
+export { SmallLoader, LargeLoader };

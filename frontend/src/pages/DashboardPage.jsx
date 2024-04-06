@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAllCoursesMutation } from "../slices/courseApiSlice";
 import { getCourses } from "../slices/courseSlice";
 import { ToastErrorMessage } from "../components/ToastMessage";
+import { LargeLoader } from "../components/Loader";
 
 const DashboardPage = () => {
 	const dispatch = useDispatch();
@@ -36,7 +37,11 @@ const DashboardPage = () => {
 			<div className="dashboardpage">
 				<div className="container">
 					<SearchBar />
-					<MyCourses courses={courses} />
+					{isLoading ? (
+						<LargeLoader />
+					) : (
+						<MyCourses courses={courses} />
+					)}
 				</div>
 			</div>
 			{showAlertMessage && (

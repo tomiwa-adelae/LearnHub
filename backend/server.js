@@ -1,3 +1,4 @@
+import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -39,33 +40,8 @@ app.get("/", (req, res) => {
 	res.send("API up & running...");
 });
 
-// //multer------------------------------------------------------------
-// import multer from "multer";
-
-// const storage = multer.diskStorage({
-// 	destination: function (req, file, cb) {
-// 		cb(null, "./files");
-// 	},
-// 	filename: function (req, file, cb) {
-// 		const uniqueSuffix = Date.now();
-// 		cb(null, uniqueSuffix + file.originalname);
-// 	},
-// });
-
-// const upload = multer({ storage: storage });
-
-// app.post("/upload-files", upload.single("file"), async (req, res) => {
-// 	console.log(req.file);
-// 	const title = req.body.title;
-// 	const fileName = req.file.filename;
-// 	try {
-// 		console.log(fileName);
-// 		// await PdfSchema.create({ title: title, pdf: fileName });
-// 		res.send({ status: "ok" });
-// 	} catch (error) {
-// 		res.json({ status: error });
-// 	}
-// });
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Middleware
 app.use(notFound);

@@ -455,4 +455,20 @@ form {
 			}
 		}
 	}
+
+	.large-loader {
+		border: 4px solid $grey-color;
+		border-left-color: $secondary-color;
+		border-top-color: $secondary-color;
+		border-radius: 50%;
+		width: 100px;
+		height: 100px;
+		animation: spin 1s linear infinite;
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+	}
 }

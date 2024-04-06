@@ -51,8 +51,6 @@ const createCourse = asyncHandler(async (req, res) => {
 		return color;
 	}
 
-	console.log(getRandomColor());
-
 	const course = await Course.create({
 		user: req.user.id,
 		courseCode,
@@ -68,5 +66,31 @@ const createCourse = asyncHandler(async (req, res) => {
 		throw new Error("Internal server error!");
 	}
 });
+
+// Desc create courses as a lecturer
+// @route POST /api/courses
+// @access Private
+
+// const storage = multer.diskStorage({
+// 	destination: function (req, file, cb) {
+// 		cb(null, "files/");
+// 	},
+// 	filename: function (req, file, cb) {
+// 		const uniqueSuffix = Date.now();
+// 		cb(null, uniqueSuffix + file.originalname);
+// 	},
+// });
+
+// const upload = multer({ storage: storage });
+
+// const createNewPDF = asyncHandler(
+// 	upload.single("coursePDF"),
+// 	async (req, res) => {
+// 		try {
+// 			const fileName = req.file.filename;
+// 			console.log(fileName);
+// 		} catch (error) {}
+// 	}
+// );
 
 export { getCourses, createCourse, getCourseById };

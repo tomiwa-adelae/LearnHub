@@ -49,7 +49,7 @@ function App() {
 				<Route path="" element={<PrivateRoute />}>
 					<Route path="/dashboard" element={<DashboardPage />} />
 					<Route path="/course/:id" element={<CoursePage />} />
-					<Route path="/new-pdf" element={<NewPDFPage />} />
+					<Route path="/new-pdf/:id" element={<NewPDFPage />} />
 					<Route path="/new-course" element={<NewCoursePage />} />
 					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/edit-profile" element={<EditProfilePage />} />

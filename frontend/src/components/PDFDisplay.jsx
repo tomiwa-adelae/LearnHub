@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
 
-import pdf from "../pdf.pdf";
+// import pdf from "../pdf.pdf";
 import { IoCloseCircle } from "react-icons/io5";
 
-const PDFDisplay = () => {
+const PDFDisplay = ({ pdfFile, closeModal }) => {
 	const [numPages, setNumPages] = useState();
 
 	function onDocumentLoadSuccess({ numPages }) {
@@ -14,10 +14,13 @@ const PDFDisplay = () => {
 	return (
 		<div className="pdf-display">
 			<div className="wrapper">
-				<button className="btn btn-primary">
+				<button
+					onClick={() => closeModal()}
+					className="btn btn-primary"
+				>
 					<IoCloseCircle /> Close modal
 				</button>
-				<Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+				<Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
 					{Array.apply(null, Array(numPages))
 						.map((x, i) => i + 1)
 						.map((page) => {
@@ -26,6 +29,7 @@ const PDFDisplay = () => {
 									pageNumber={page}
 									renderTextLayer={false}
 									renderAnnotationLayer={false}
+									key={page}
 								/>
 							);
 						})}

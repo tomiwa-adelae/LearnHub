@@ -1,13 +1,13 @@
 import CourseHead from "../components/CourseHead";
 import CourseMaterials from "../components/CourseMaterials";
 import Footer from "../components/Footer";
-import PDFDisplay from "../components/PDFDisplay";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ToastErrorMessage } from "../components/ToastMessage";
 import { useCourseDetailsMutation } from "../slices/courseApiSlice";
 import { getCourseById } from "../slices/courseSlice";
+import { LargeLoader } from "../components/Loader";
 
 const CoursePage = () => {
 	const { id } = useParams();
@@ -38,10 +38,17 @@ const CoursePage = () => {
 		<>
 			<div className="coursepage">
 				<div className="container">
-					<CourseHead course={course} />
-					<CourseMaterials />
+					{isLoading ? (
+						<LargeLoader />
+					) : (
+						course && (
+							<>
+								<CourseHead course={course} />
+								<CourseMaterials course={course} />
+							</>
+						)
+					)}
 				</div>
-				{/* <PDFDisplay /> */}
 			</div>
 			{showAlertMessage && (
 				<ToastErrorMessage message={showAlertMessage} />

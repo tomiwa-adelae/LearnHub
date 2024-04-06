@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 
 import { useRegisterMutation } from "../slices/userApiSlice";
 import { ToastErrorMessage } from "../components/ToastMessage";
-import SmallLoader from "../components/Loader";
+import { SmallLoader } from "../components/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
