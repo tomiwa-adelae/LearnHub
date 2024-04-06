@@ -9,7 +9,7 @@ import { FcDepartment } from "react-icons/fc";
 import Footer from "../components/Footer";
 
 import { useRegisterMutation } from "../slices/userApiSlice";
-import { ToastSuccessMessage } from "../components/ToastMessage";
+import { ToastErrorMessage } from "../components/ToastMessage";
 import SmallLoader from "../components/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -228,7 +228,7 @@ const RegisterPage = () => {
 				</div>
 			</div>
 			{showAlertMessage && (
-				<ToastSuccessMessage message={showAlertMessage} />
+				<ToastErrorMessage message={showAlertMessage} />
 			)}
 			<Footer />
 		</>

@@ -12,7 +12,7 @@ const SearchBar = () => {
 					Search <IoSendSharp />
 				</button>
 			</form>
-			<SearchableCourses />
+			{/* <SearchableCourses /> */}
 		</div>
 	);
 };

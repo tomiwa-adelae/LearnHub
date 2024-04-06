@@ -1,13 +1,16 @@
 import { IoCloseCircle, IoSendSharp } from "react-icons/io5";
 import { MdPostAdd } from "react-icons/md";
 
-const CoursesModal = () => {
+const CoursesModal = ({ closeModal }) => {
 	return (
 		<div className="courses-modal">
 			<div className="wrapper">
 				<div className="head">
 					<h4>All courses</h4>
-					<button className="btn btn-primary">
+					<button
+						onClick={() => closeModal()}
+						className="btn btn-primary"
+					>
 						<IoCloseCircle /> Close modal
 					</button>
 				</div>

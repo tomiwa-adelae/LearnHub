@@ -2,9 +2,28 @@ import { FaCircleUser } from "react-icons/fa6";
 import { IoMdLock } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../slices/userApiSlice";
+import { logout } from "../slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const ProfileDetails = ({ userInfo }) => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [logoutApiCall] = useLogoutMutation();
+
+	const logoutHandler = async () => {
+		try {
+			await logoutApiCall().unwrap();
+			dispatch(logout());
+
+			navigate("/login");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<div className="profile-details">
 			<img src={userInfo.profilePicture} alt={userInfo.name} />
@@ -28,7 +47,7 @@ const ProfileDetails = ({ userInfo }) => {
 					<Link to="/change-password" className="btn btn-secondary">
 						<IoMdLock /> Change password
 					</Link>
-					<button className="btn btn-danger">
+					<button onClick={logoutHandler} className="btn btn-danger">
 						<IoLogOut /> Logout
 					</button>
 				</div>

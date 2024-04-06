@@ -48,7 +48,7 @@ function App() {
 				{/* Protected routes */}
 				<Route path="" element={<PrivateRoute />}>
 					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path="/course" element={<CoursePage />} />
+					<Route path="/course/:id" element={<CoursePage />} />
 					<Route path="/new-pdf" element={<NewPDFPage />} />
 					<Route path="/new-course" element={<NewCoursePage />} />
 					<Route path="/profile" element={<ProfilePage />} />
