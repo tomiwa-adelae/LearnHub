@@ -26,7 +26,6 @@ const authUser = asyncHandler(async (req, res) => {
 			department: user.department,
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
-			courses: user.courses,
 			isLecturer: user.isLecturer,
 		});
 	} else {
@@ -102,7 +101,6 @@ const registerUser = asyncHandler(async (req, res) => {
 			department: user.department,
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
-			courses: user.courses,
 			isLecturer: user.isLecturer,
 		});
 	} else {
@@ -156,7 +154,6 @@ const registerLecturer = asyncHandler(async (req, res) => {
 			department: user.department,
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
-			courses: user.courses,
 			isLecturer: user.isLecturer,
 		});
 	} else {

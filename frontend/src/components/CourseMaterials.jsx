@@ -3,7 +3,7 @@ import Material from "./Material";
 import { MdPostAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const CourseMaterials = ({ course }) => {
+const CourseMaterials = ({ course, pdfs }) => {
 	return (
 		<div className="course-materials">
 			<div className="head">
@@ -23,8 +23,14 @@ const CourseMaterials = ({ course }) => {
 			</div>
 
 			<div className="materials">
-				{course.coursePDFs.map((pdf) => (
-					<Material key={pdf.coursePDF} pdf={pdf} />
+				{pdfs.map((pdf) => (
+					<div
+						style={{ borderColor: `${course.courseColor}` }}
+						key={pdf._id}
+						className="material"
+					>
+						<Material pdfObject={pdf} />
+					</div>
 				))}
 			</div>
 		</div>

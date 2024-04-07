@@ -9,6 +9,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import pdfRoutes from "./routes/pdfRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const PORT = process.env.PORT || 5000;
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/uploads", uploadRoutes);
+app.use("/api/pdfs", pdfRoutes);
 
 app.get("/", (req, res) => {
 	res.send("API up & running...");

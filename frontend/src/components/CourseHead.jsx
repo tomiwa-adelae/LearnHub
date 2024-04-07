@@ -1,6 +1,9 @@
 const CourseHead = ({ course }) => {
 	return (
-		<div className="course-head">
+		<div
+			style={{ borderColor: `${course.courseColor}` }}
+			className="course-head"
+		>
 			<h5>Course code: {course.courseCode}</h5>
 			<h5>Course title: {course.courseTitle}</h5>
 			<h5>Course unit: {course.courseUnit} unit</h5>

@@ -2,6 +2,8 @@ import path from "path";
 import express from "express";
 import multer from "multer";
 import Course from "../models/courseModel.js";
+import { protect } from "../middleware/authMiddleware.js";
+import PDF from "../models/pdfModel.js";
 
 const router = express.Router();
 
@@ -19,30 +21,53 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/:id", upload.single("coursePDF"), async (req, res) => {
+router.post("/:id", upload.single("coursePDF"), protect, async (req, res) => {
 	// console.log(req.file);
+	// const { } = req.body;
+	// console.log(req.file);
+	// const coursePDF = req.file.filename;
+	// try {
+	// 	const course = await Course.findById(req.params.id);
+	// 	if (course) {
+	// 		course.coursePDFs.unshift({ courseTitle, coursePDF });
+	// 		await course.save();
+	// 		res.status(200).json({
+	// 			message: "PDF material uploaded successfully!",
+	// 		});
+	// 	} else {
+	// 		res.status(400);
+	// 		throw new Error("Internal server error! Course not found!");
+	// 	}
+	// } catch (error) {
+	// 	res.status(400);
+	// 	throw new Error("Internal server error! ");
+	// }
 
-	const courseTitle = req.body.courseTitle;
-	const coursePDF = req.file.filename;
+	const pdfMaterial = req.file.filename;
+	const pdfTitle = req.body.pdfTitle;
+	const user = req.user._id;
+	const courseId = req.params.id;
 
 	try {
-		const course = await Course.findById(req.params.id);
-		if (course) {
-			course.coursePDFs.unshift({ courseTitle, coursePDF });
+		const pdf = await PDF.create({
+			user,
+			courseId,
+			pdfTitle,
+			pdfMaterial,
+		});
 
-			await course.save();
-
-			res.status(200).json({
-				message: "PDF material uploaded successfully!",
-			});
+		if (pdf) {
+			res.status(201).json({ message: "PDF uploaded successfully!" });
 		} else {
 			res.status(400);
-			throw new Error("Internal server error! Course not found!");
+			throw new Error("Internal server error! PDF not uploaded!");
 		}
 	} catch (error) {
 		res.status(400);
 		throw new Error("Internal server error! ");
 	}
+
+	// console.log({ pdfMaterial, pdfTitle, user, courseId });
 });
 
 export default router;

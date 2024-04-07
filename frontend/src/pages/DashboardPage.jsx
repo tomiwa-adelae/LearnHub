@@ -9,44 +9,16 @@ import { ToastErrorMessage } from "../components/ToastMessage";
 import { LargeLoader } from "../components/Loader";
 
 const DashboardPage = () => {
-	const dispatch = useDispatch();
-
-	const [showAlertMessage, setShowAlertMessage] = useState(null);
-
-	const { courses } = useSelector((state) => state.course);
-
-	const [allCourses, { isLoading }] = useAllCoursesMutation();
-
-	useEffect(() => {
-		async function fetchCourses() {
-			try {
-				setShowAlertMessage(null);
-				const res = await allCourses();
-				dispatch(getCourses(res.data));
-			} catch (error) {
-				setShowAlertMessage(error.data.message);
-				console.log(error);
-			}
-		}
-
-		fetchCourses();
-	}, []);
-
 	return (
 		<>
 			<div className="dashboardpage">
 				<div className="container">
 					<SearchBar />
-					{isLoading ? (
-						<LargeLoader />
-					) : (
-						<MyCourses courses={courses} />
-					)}
+
+					<MyCourses />
 				</div>
 			</div>
-			{showAlertMessage && (
-				<ToastErrorMessage message={showAlertMessage} />
-			)}
+
 			<Footer />
 		</>
 	);

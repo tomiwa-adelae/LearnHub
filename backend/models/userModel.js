@@ -32,13 +32,6 @@ const userSchema = new mongoose.Schema(
 			default:
 				"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
 		},
-		courses: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "Course",
-				default: [],
-			},
-		],
 		isLecturer: {
 			type: Boolean,
 			required: true,

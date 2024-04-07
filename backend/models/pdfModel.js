@@ -1,31 +1,29 @@
 import mongoose from "mongoose";
 
-const courseSchema = new mongoose.Schema(
+const pdfSchema = new mongoose.Schema(
 	{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 			ref: "User",
 		},
-		courseCode: {
+		courseId: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: "Course",
+		},
+		pdfTitle: {
 			type: String,
 			required: true,
 		},
-		courseTitle: {
+		pdfMaterial: {
 			type: String,
 			required: true,
-		},
-		courseUnit: {
-			type: String,
-			required: true,
-		},
-		courseColor: {
-			type: String,
 		},
 	},
 	{ timestamps: true }
 );
 
-const Course = mongoose.model("Course", courseSchema);
+const PDF = mongoose.model("PDF", pdfSchema);
 
-export default Course;
+export default PDF;

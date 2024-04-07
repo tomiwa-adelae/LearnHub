@@ -4,7 +4,7 @@ import PDFDisplay from "./PDFDisplay";
 import { useState } from "react";
 import { BASE_URL } from "../slices/constants";
 
-const Material = (pdf) => {
+const Material = ({ pdfObject }) => {
 	const [pdfFile, setPdfFile] = useState(null);
 
 	const showPdf = (pdf) => {
@@ -18,14 +18,13 @@ const Material = (pdf) => {
 
 	return (
 		<>
-			<div className="material">
+			<>
 				<BsFilePdfFill className="pdf-icon" />
-				<h5>{pdf.pdf.courseTitle}</h5>
-				<h6>67 pages</h6>
-				<h6>Uploaded on the 21st of March, 2024</h6>
+				<h5>{pdfObject.pdfTitle}</h5>
+
 				<div>
 					<button
-						onClick={() => showPdf(pdf.pdf.coursePDF)}
+						onClick={() => showPdf(pdfObject.pdfMaterial)}
 						className="btn btn-primary"
 					>
 						<IoOpen /> View PDF
@@ -34,7 +33,7 @@ const Material = (pdf) => {
 						<IoDownload /> Download PDF
 					</div>
 				</div>
-			</div>
+			</>
 			{pdfFile && (
 				<PDFDisplay
 					pdfFile={pdfFile}

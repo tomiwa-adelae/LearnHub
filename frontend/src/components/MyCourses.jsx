@@ -1,14 +1,40 @@
 import { MdPostAdd } from "react-icons/md";
 import Course from "./Course";
 import CoursesModal from "./CoursesModal";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAllCoursesMutation } from "../slices/courseApiSlice";
+import { getCourses } from "../slices/courseSlice";
+import { LargeLoader } from "./Loader";
 
-const MyCourses = ({ courses }) => {
+const MyCourses = () => {
 	const [showModal, setShowModal] = useState(null);
 
 	const { userInfo } = useSelector((state) => state.auth);
+
+	const dispatch = useDispatch();
+
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
+
+	const { courses } = useSelector((state) => state.course);
+
+	const [allCourses, { isLoading }] = useAllCoursesMutation();
+
+	useEffect(() => {
+		async function fetchCourses() {
+			try {
+				setShowAlertMessage(null);
+				const res = await allCourses();
+				dispatch(getCourses(res.data));
+			} catch (error) {
+				setShowAlertMessage(error.data.message);
+				console.log(error);
+			}
+		}
+
+		fetchCourses();
+	}, []);
 
 	return (
 		<>
@@ -37,31 +63,23 @@ const MyCourses = ({ courses }) => {
 					)}
 				</div>
 
-				{courses.length === 0 && (
+				{isLoading ? (
+					<LargeLoader />
+				) : courses.length === 0 ? (
 					<h6>You have not selected any courses yet! Select now</h6>
+				) : (
+					<div className="courses">
+						{courses.map((course) => (
+							<Course key={course._id} course={course} />
+						))}
+					</div>
 				)}
-				<div className="courses">
-					{courses.map((course) => (
-						<Course key={course._id} course={course} />
-					))}
-					{/* <Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course />
-					<Course /> */}
-				</div>
 			</div>
 			{showModal && (
 				<CoursesModal closeModal={() => setShowModal(!showModal)} />
+			)}
+			{showAlertMessage && (
+				<ToastErrorMessage message={showAlertMessage} />
 			)}
 		</>
 	);

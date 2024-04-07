@@ -58,7 +58,7 @@ const NewPDFPage = () => {
 
 				const formData = new FormData();
 
-				formData.append("courseTitle", courseTitle);
+				formData.append("pdfTitle", courseTitle);
 				formData.append("coursePDF", coursePDF);
 
 				const res = await axios.post(

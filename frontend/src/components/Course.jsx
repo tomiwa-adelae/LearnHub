@@ -4,7 +4,10 @@ const Course = ({ course }) => {
 	console.log(course);
 	return (
 		<Link to={`/course/${course._id}`}>
-			<div className="course">
+			<div
+				style={{ backgroundColor: `${course.courseColor}` }}
+				className="course"
+			>
 				<h5>{course.courseCode}</h5>
 
 				<div>
