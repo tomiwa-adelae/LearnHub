@@ -224,6 +224,11 @@ form {
 				color: rgba($white-color, $opacity);
 				font-weight: lighter;
 			}
+
+			&:disabled {
+				opacity: $opacity;
+				cursor: not-allowed;
+			}
 		}
 
 		svg {

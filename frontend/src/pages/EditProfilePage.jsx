@@ -4,8 +4,68 @@ import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineNumbers } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useUpdateUserMutation } from "../slices/userApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { SmallLoader } from "../components/Loader";
+import {
+	ToastErrorMessage,
+	ToastSuccessMessage,
+} from "../components/ToastMessage";
 
 const EditProfilePage = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [matricNumber, setMatricNumber] = useState("");
+	const [department, setDepartment] = useState("");
+	const [faculty, setFaculty] = useState("");
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
+	const [showSuccessMessage, setShowSuccessMessage] = useState(null);
+
+	const { userInfo } = useSelector((state) => state.auth);
+
+	const [updateUser, { isLoading }] = useUpdateUserMutation();
+
+	useEffect(() => {
+		if (userInfo) {
+			setName(userInfo.name || "");
+			setEmail(userInfo.email || "");
+			setMatricNumber(userInfo.matricNumber || "");
+			setDepartment(userInfo.department || "");
+			setFaculty(userInfo.faculty || "");
+		}
+	}, [userInfo]);
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+
+		setShowAlertMessage(null);
+
+		try {
+			const res = await updateUser({
+				name,
+				email,
+				matricNumber,
+				department,
+				faculty,
+			}).unwrap();
+			dispatch(setCredentials({ ...res }));
+
+			setShowSuccessMessage("Profile updated successfully!");
+
+			setTimeout(() => {
+				navigate("/profile");
+			}, 3000);
+		} catch (error) {
+			setShowAlertMessage(error.data.message);
+		}
+	};
+
 	return (
 		<>
 			<div className="editprofilepage">
@@ -20,7 +80,7 @@ const EditProfilePage = () => {
 							<span className="text-primary">information</span>
 						</h3>
 					</section>
-					<form>
+					<form onSubmit={submitHandler}>
 						<h4>Edit profile</h4>
 						<div>
 							<label htmlFor="name">Name</label>
@@ -28,6 +88,8 @@ const EditProfilePage = () => {
 								type="text"
 								placeholder="John Doe"
 								id="name"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
 							/>
 							<FaCircleUser />
 						</div>
@@ -37,6 +99,9 @@ const EditProfilePage = () => {
 								type="email"
 								placeholder="johndoe@gmail.com"
 								id="email"
+								value={email}
+								readOnly={true}
+								disabled
 							/>
 							<MdEmail />
 						</div>
@@ -48,12 +113,20 @@ const EditProfilePage = () => {
 								type="text"
 								placeholder="20J03001"
 								id="matricNumber"
+								value={matricNumber}
+								readOnly={true}
+								disabled
 							/>
 							<MdOutlineNumbers />
 						</div>
 						<div>
 							<label htmlFor="department">Department</label>
-							<select name="department" id="department">
+							<select
+								name="department"
+								id="department"
+								value={department}
+								onChange={(e) => setDepartment(e.target.value)}
+							>
 								<option value="">Select department</option>
 								<option value="Mathematics">Mathematics</option>
 								<option value="Mechanical Engineering">
@@ -74,7 +147,12 @@ const EditProfilePage = () => {
 						</div>
 						<div>
 							<label htmlFor="faculty">Faculty</label>
-							<select name="faculty" id="faculty">
+							<select
+								name="faculty"
+								id="faculty"
+								value={faculty}
+								onChange={(e) => setFaculty(e.target.value)}
+							>
 								<option value="">Select faculty</option>
 								<option value="Agriculture">Agriculture</option>
 								<option value="Basic Medical Science">
@@ -99,12 +177,24 @@ const EditProfilePage = () => {
 							<FcDepartment />
 						</div>
 						<button className="btn btn-white">
-							Save changes
-							<IoSave />
+							{isLoading ? (
+								<SmallLoader />
+							) : (
+								<>
+									Save changes
+									<IoSave />
+								</>
+							)}
 						</button>
 					</form>
 				</div>
 			</div>
+			{showSuccessMessage && (
+				<ToastSuccessMessage message={showSuccessMessage} />
+			)}
+			{showAlertMessage && (
+				<ToastErrorMessage message={showAlertMessage} />
+			)}
 			<Footer />
 		</>
 	);

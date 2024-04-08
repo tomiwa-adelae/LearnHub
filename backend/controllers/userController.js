@@ -172,4 +172,34 @@ const logoutUser = (req, res) => {
 	res.status(200).json({ message: "Logged out successfully!" });
 };
 
-export { authUser, registerUser, registerLecturer, logoutUser };
+// Desc Update a user's details
+// @route PUT /api/users/profile
+// @access Private
+const updateUser = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.user.id);
+
+	if (user) {
+		user.name = req.body.name || user.name;
+		user.email = req.body.email || user.email;
+		user.matricNumber = req.body.matricNumber || user.email;
+		user.department = req.body.department || user.email;
+		user.faculty = req.body.faculty || user.email;
+
+		const updatedUser = await user.save();
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			department: updatedUser.department,
+			faculty: updatedUser.faculty,
+			profilePicture: updatedUser.profilePicture,
+			isLecturer: updatedUser.isLecturer,
+		});
+	} else {
+		res.status(401);
+		throw new Error("500 - Internal Server Error!");
+	}
+});
+
+export { authUser, registerUser, registerLecturer, logoutUser, updateUser };
