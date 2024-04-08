@@ -30,7 +30,6 @@ const ProfileDetails = ({ userInfo }) => {
 	return (
 		<div className="profile-details">
 			<img src={userInfo.profilePicture} alt={userInfo.name} />
-
 			<section>
 				<div className="details">
 					<h3 className="text-primary">{userInfo.name}</h3>

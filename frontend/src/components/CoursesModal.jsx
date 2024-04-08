@@ -74,6 +74,22 @@ const CoursesModal = ({ closeModal }) => {
 		fetchStudentCourses();
 
 		fetchAllCourses();
+
+		const keyDownHandler = (event) => {
+			if (event.key === "Escape") {
+				event.preventDefault();
+
+				// 👇️ your logic here
+				closeModal();
+			}
+		};
+
+		document.addEventListener("keydown", keyDownHandler);
+
+		// 👇️ clean up event listener
+		return () => {
+			document.removeEventListener("keydown", keyDownHandler);
+		};
 	}, []);
 
 	const handleSubmit = async (e) => {
@@ -104,7 +120,10 @@ const CoursesModal = ({ closeModal }) => {
 
 			setShowSuccessMessage(res.data.message);
 			setAddLoading(null);
-			closeModal();
+
+			setTimeout(() => {
+				closeModal();
+			}, 1500);
 		} catch (error) {
 			setShowAlertMessage(error.data.message);
 			setAddLoading(null);

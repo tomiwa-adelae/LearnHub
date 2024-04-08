@@ -151,6 +151,7 @@ const registerLecturer = asyncHandler(async (req, res) => {
 			_id: user._id,
 			name: user.name,
 			email: user.email,
+			matricNumber: user.matricNumber,
 			department: user.department,
 			faculty: user.faculty,
 			profilePicture: user.profilePicture,
@@ -181,9 +182,12 @@ const updateUser = asyncHandler(async (req, res) => {
 	if (user) {
 		user.name = req.body.name || user.name;
 		user.email = req.body.email || user.email;
-		user.matricNumber = req.body.matricNumber || user.email;
-		user.department = req.body.department || user.email;
-		user.faculty = req.body.faculty || user.email;
+		user.matricNumber = req.body.matricNumber || user.matricNumber;
+		user.department = req.body.department || user.department;
+		user.faculty = req.body.faculty || user.faculty;
+		user.profilePicture =
+			`https://api.dicebear.com/8.x/initials/svg?seed=${req.body.name}` ||
+			user.profilePicture;
 
 		const updatedUser = await user.save();
 
@@ -191,6 +195,7 @@ const updateUser = asyncHandler(async (req, res) => {
 			_id: updatedUser._id,
 			name: updatedUser.name,
 			email: updatedUser.email,
+			matricNumber: updatedUser.matricNumber,
 			department: updatedUser.department,
 			faculty: updatedUser.faculty,
 			profilePicture: updatedUser.profilePicture,
@@ -202,4 +207,51 @@ const updateUser = asyncHandler(async (req, res) => {
 	}
 });
 
-export { authUser, registerUser, registerLecturer, logoutUser, updateUser };
+// Desc Update a user's password
+// @route PUT /api/users/password
+// @access Private
+const updatePassword = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.user.id);
+
+	const { currentPassword, newPassword, confirmPassword } = req.body;
+
+	if (user) {
+		if (!currentPassword || !newPassword || !confirmPassword) {
+			res.status(400);
+			throw new Error("Please enter all fields!");
+		}
+
+		if (newPassword !== confirmPassword) {
+			res.status(400);
+			throw new Error("Passwords do not match!");
+		}
+
+		if (newPassword.length <= 5) {
+			res.status(400);
+			throw new Error("Password should be at least 6 character!");
+		}
+
+		if (user && (await user.matchPassword(currentPassword))) {
+			user.password = newPassword;
+
+			await user.save();
+
+			res.status(201).json({ message: "Password successfully updated!" });
+		} else {
+			res.status(400);
+			throw new Error("Invalid current password!");
+		}
+	} else {
+		res.status(401);
+		throw new Error("500 - Internal Server Error!");
+	}
+});
+
+export {
+	authUser,
+	registerUser,
+	registerLecturer,
+	logoutUser,
+	updateUser,
+	updatePassword,
+};

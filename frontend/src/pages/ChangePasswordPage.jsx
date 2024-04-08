@@ -12,9 +12,53 @@ import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineNumbers } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import Footer from "../components/Footer";
+import { useUpdatePasswordMutation } from "../slices/userApiSlice";
+
+import { useSelector } from "react-redux";
+import {
+	ToastErrorMessage,
+	ToastSuccessMessage,
+} from "../components/ToastMessage";
+import { SmallLoader } from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 const ChangePasswordPage = () => {
-	const [showPassword, setShowPassword] = useState(false);
+	const navigate = useNavigate();
+
+	const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+	const [showNewPassword, setShowNewPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+	const [currentPassword, setCurrentPassword] = useState("");
+	const [newPassword, setNewPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
+	const [showSuccessMessage, setShowSuccessMessage] = useState(null);
+
+	const { userInfo } = useSelector((state) => state.auth);
+
+	const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+
+		setShowAlertMessage(null);
+
+		try {
+			await updatePassword({
+				currentPassword,
+				newPassword,
+				confirmPassword,
+			}).unwrap();
+
+			setShowSuccessMessage("Password updated successfully!");
+
+			setTimeout(() => {
+				navigate("/profile");
+			}, 3000);
+		} catch (error) {
+			setShowAlertMessage(error.data.message);
+		}
+	};
 
 	return (
 		<>
@@ -31,29 +75,37 @@ const ChangePasswordPage = () => {
 							</span>
 						</h3>
 					</section>
-					<form>
+					<form onSubmit={submitHandler}>
 						<h4>Change password</h4>
 						<div>
 							<label htmlFor="currentPassword">
 								Current password
 							</label>
 							<input
-								type={showPassword ? "text" : "password"}
+								type={showCurrentPassword ? "text" : "password"}
 								placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 								id="currentPassword"
+								value={currentPassword}
+								onChange={(e) =>
+									setCurrentPassword(e.target.value)
+								}
 							/>
 							<IoMdLock />
-							{showPassword ? (
+							{showCurrentPassword ? (
 								<IoEyeOffSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowCurrentPassword(
+											!showCurrentPassword
+										)
 									}
 									className="password"
 								/>
 							) : (
 								<IoEyeSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowCurrentPassword(
+											!showCurrentPassword
+										)
 									}
 									className="password"
 								/>
@@ -62,22 +114,24 @@ const ChangePasswordPage = () => {
 						<div>
 							<label htmlFor="newPassword">New password</label>
 							<input
-								type={showPassword ? "text" : "password"}
+								type={showNewPassword ? "text" : "password"}
 								placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 								id="newPassword"
+								value={newPassword}
+								onChange={(e) => setNewPassword(e.target.value)}
 							/>
 							<IoMdLock />
-							{showPassword ? (
+							{showNewPassword ? (
 								<IoEyeOffSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowNewPassword(!showNewPassword)
 									}
 									className="password"
 								/>
 							) : (
 								<IoEyeSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowNewPassword(!showNewPassword)
 									}
 									className="password"
 								/>
@@ -88,34 +142,54 @@ const ChangePasswordPage = () => {
 								Confirm password
 							</label>
 							<input
-								type={showPassword ? "text" : "password"}
+								type={showConfirmPassword ? "text" : "password"}
 								placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 								id="confirmPassword"
+								value={confirmPassword}
+								onChange={(e) =>
+									setConfirmPassword(e.target.value)
+								}
 							/>
 							<IoMdLock />
-							{showPassword ? (
+							{showConfirmPassword ? (
 								<IoEyeOffSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowConfirmPassword(
+											!showConfirmPassword
+										)
 									}
 									className="password"
 								/>
 							) : (
 								<IoEyeSharp
 									onClick={() =>
-										setShowPassword(!showPassword)
+										setShowConfirmPassword(
+											!showConfirmPassword
+										)
 									}
 									className="password"
 								/>
 							)}
 						</div>
 						<button className="btn btn-white">
-							Save changes
-							<IoSave />
+							{isLoading ? (
+								<SmallLoader />
+							) : (
+								<>
+									Save changes
+									<IoSave />
+								</>
+							)}
 						</button>
 					</form>
 				</div>
 			</div>
+			{showSuccessMessage && (
+				<ToastSuccessMessage message={showSuccessMessage} />
+			)}
+			{showAlertMessage && (
+				<ToastErrorMessage message={showAlertMessage} />
+			)}
 			<Footer />
 		</>
 	);

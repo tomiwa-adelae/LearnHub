@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf";
 
 // import pdf from "../pdf.pdf";
@@ -10,6 +10,24 @@ const PDFDisplay = ({ pdfFile, closeModal }) => {
 	function onDocumentLoadSuccess({ numPages }) {
 		setNumPages(numPages);
 	}
+
+	useEffect(() => {
+		const keyDownHandler = (event) => {
+			if (event.key === "Escape") {
+				event.preventDefault();
+
+				// 👇️ your logic here
+				closeModal();
+			}
+		};
+
+		document.addEventListener("keydown", keyDownHandler);
+
+		// 👇️ clean up event listener
+		return () => {
+			document.removeEventListener("keydown", keyDownHandler);
+		};
+	}, [closeModal]);
 
 	return (
 		<div className="pdf-display">
