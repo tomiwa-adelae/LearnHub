@@ -2,10 +2,10 @@ import asyncHandler from "express-async-handler";
 import Course from "../models/courseModel.js";
 import multer from "multer";
 
-// Desc Get all courses for logged in user
-// @route GET /api/courses
+// Desc Get all courses for logged in lecturer
+// @route GET /api/lecturer-courses
 // @access Private
-const getCourses = asyncHandler(async (req, res) => {
+const getLecturerCourses = asyncHandler(async (req, res) => {
 	const courses = await Course.find({ user: req.user.id })
 		.sort({
 			createdAt: -1,
@@ -15,10 +15,10 @@ const getCourses = asyncHandler(async (req, res) => {
 	res.json(courses);
 });
 
-// Desc Get course details for logged in user with the id
-// @route GET /api/courses/:id
+// Desc Get course details for logged in lecturer with the course id
+// @route GET /api/lecturer-courses/:id
 // @access Private
-const getCourseById = asyncHandler(async (req, res) => {
+const getLecturerCourseById = asyncHandler(async (req, res) => {
 	const course = await Course.findById(req.params.id).populate("user");
 
 	if (course) {
@@ -30,9 +30,9 @@ const getCourseById = asyncHandler(async (req, res) => {
 });
 
 // Desc create courses as a lecturer
-// @route POST /api/courses
+// @route POST /api/lecturer-courses
 // @access Private
-const createCourse = asyncHandler(async (req, res) => {
+const createLecturerCourse = asyncHandler(async (req, res) => {
 	const { courseCode, courseTitle, courseUnit } = req.body;
 
 	if (!courseCode || !courseTitle || !courseUnit) {
@@ -67,30 +67,4 @@ const createCourse = asyncHandler(async (req, res) => {
 	}
 });
 
-// Desc create courses as a lecturer
-// @route POST /api/courses
-// @access Private
-
-// const storage = multer.diskStorage({
-// 	destination: function (req, file, cb) {
-// 		cb(null, "files/");
-// 	},
-// 	filename: function (req, file, cb) {
-// 		const uniqueSuffix = Date.now();
-// 		cb(null, uniqueSuffix + file.originalname);
-// 	},
-// });
-
-// const upload = multer({ storage: storage });
-
-// const createNewPDF = asyncHandler(
-// 	upload.single("coursePDF"),
-// 	async (req, res) => {
-// 		try {
-// 			const fileName = req.file.filename;
-// 			console.log(fileName);
-// 		} catch (error) {}
-// 	}
-// );
-
-export { getCourses, createCourse, getCourseById };
+export { getLecturerCourses, createLecturerCourse, getLecturerCourseById };

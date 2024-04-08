@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ToastErrorMessage } from "../components/ToastMessage";
-import { useCourseDetailsMutation } from "../slices/courseApiSlice";
-import { getCourseById } from "../slices/courseSlice";
+import { useLecturerCourseDetailsMutation } from "../slices/lecturerCourseApiSlice";
+import { getLecturerCourseById } from "../slices/lecturerCourseSlice";
 import { LargeLoader } from "../components/Loader";
-import { useAllPDFsMutation } from "../slices/pdfApiSlice";
+import { useAllPDFsByIdMutation } from "../slices/pdfApiSlice";
 import { getPDFs } from "../slices/pdfSlice";
 
 const CoursePage = () => {
@@ -16,21 +16,24 @@ const CoursePage = () => {
 
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 
-	const { course } = useSelector((state) => state.course);
+	const { userInfo } = useSelector((state) => state.auth);
+
+	const { lecturerCourse } = useSelector((state) => state.lecturerCourse);
 	const { pdfs } = useSelector((state) => state.pdf);
 
 	const dispatch = useDispatch();
 
-	const [courseDetails, { isLoading }] = useCourseDetailsMutation();
-	const [allPDFs, { isLoading: loadingPdfs }] = useAllPDFsMutation();
+	const [lecturerCourseDetails, { isLoading }] =
+		useLecturerCourseDetailsMutation();
+	const [allPDFsById, { isLoading: loadingPdfs }] = useAllPDFsByIdMutation();
 
 	useEffect(() => {
 		async function fetchCourseDetails() {
 			try {
 				setShowAlertMessage(null);
 
-				const res = await courseDetails(id);
-				dispatch(getCourseById(res.data));
+				const res = await lecturerCourseDetails(id);
+				dispatch(getLecturerCourseById(res.data));
 			} catch (error) {
 				setShowAlertMessage(error.data.message);
 			}
@@ -38,11 +41,11 @@ const CoursePage = () => {
 
 		fetchCourseDetails();
 
-		async function fetchPDFs() {
+		async function fetchPDFsById() {
 			try {
 				setShowAlertMessage(null);
 
-				const res = await allPDFs(id);
+				const res = await allPDFsById(id);
 				dispatch(getPDFs(res.data));
 			} catch (error) {
 				console.log(error);
@@ -50,7 +53,7 @@ const CoursePage = () => {
 			}
 		}
 
-		fetchPDFs();
+		fetchPDFsById();
 	}, []);
 
 	return (
@@ -60,10 +63,14 @@ const CoursePage = () => {
 					{isLoading ? (
 						<LargeLoader />
 					) : (
-						course && (
+						lecturerCourse && (
 							<>
-								<CourseHead course={course} />
-								<CourseMaterials course={course} pdfs={pdfs} />
+								<CourseHead course={lecturerCourse} />
+								<CourseMaterials
+									course={lecturerCourse}
+									pdfs={pdfs}
+									userInfo={userInfo}
+								/>
 							</>
 						)
 					)}

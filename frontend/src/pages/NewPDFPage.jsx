@@ -9,9 +9,9 @@ import {
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
 import { useParams, useNavigate } from "react-router-dom";
-import { useCourseDetailsMutation } from "../slices/courseApiSlice";
+import { useLecturerCourseDetailsMutation } from "../slices/lecturerCourseApiSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourseById } from "../slices/courseSlice";
+import { getLecturerCourseById } from "../slices/lecturerCourseSlice";
 import { SmallLoader, LargeLoader } from "../components/Loader";
 
 const NewPDFPage = () => {
@@ -23,20 +23,21 @@ const NewPDFPage = () => {
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 	const [uploadLoading, setUploadLoading] = useState(null);
 
-	const { course } = useSelector((state) => state.course);
+	const { lecturerCourse } = useSelector((state) => state.lecturerCourse);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [courseDetails, { isLoading }] = useCourseDetailsMutation();
+	const [lecturerCourseDetails, { isLoading }] =
+		useLecturerCourseDetailsMutation();
 
 	useEffect(() => {
 		async function fetchCourseDetails() {
 			try {
 				setShowAlertMessage(null);
 
-				const res = await courseDetails(id);
-				dispatch(getCourseById(res.data));
+				const res = await lecturerCourseDetails(id);
+				dispatch(getLecturerCourseById(res.data));
 			} catch (error) {
 				setShowAlertMessage(error.data.message);
 			}
@@ -96,12 +97,12 @@ const NewPDFPage = () => {
 							</h3>
 						</section>
 						<form onSubmit={handleSubmit}>
-							<h4>{course?.courseCode}</h4>
+							<h4>{lecturerCourse?.courseCode}</h4>
 							<small>
 								<span className="text-opacity">
 									Upload new material for
 								</span>{" "}
-								<strong>{course?.courseCode}</strong>
+								<strong>{lecturerCourse?.courseCode}</strong>
 							</small>
 
 							<div>

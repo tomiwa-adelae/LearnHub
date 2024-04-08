@@ -4,9 +4,12 @@ import CoursesModal from "./CoursesModal";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAllCoursesMutation } from "../slices/courseApiSlice";
-import { getCourses } from "../slices/courseSlice";
+import { useAllLecturerCoursesMutation } from "../slices/lecturerCourseApiSlice";
+import { getLecturerCourses } from "../slices/lecturerCourseSlice";
 import { LargeLoader } from "./Loader";
+import { ToastErrorMessage } from "../components/ToastMessage";
+import { getStudentCourses } from "../slices/studentCourseSlice";
+import { useAllStudentCoursesMutation } from "../slices/studentCourseApiSlice";
 
 const MyCourses = () => {
 	const [showModal, setShowModal] = useState(null);
@@ -17,23 +20,41 @@ const MyCourses = () => {
 
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 
-	const { courses } = useSelector((state) => state.course);
+	const { lecturerCourses } = useSelector((state) => state.lecturerCourse);
+	const { studentCourses } = useSelector((state) => state.studentCourse);
 
-	const [allCourses, { isLoading }] = useAllCoursesMutation();
+	const [allLecturerCourses, { isLoading }] = useAllLecturerCoursesMutation();
+	const [allStudentCourses, { isLoading: loadingStudent }] =
+		useAllStudentCoursesMutation();
 
 	useEffect(() => {
-		async function fetchCourses() {
-			try {
-				setShowAlertMessage(null);
-				const res = await allCourses();
-				dispatch(getCourses(res.data));
-			} catch (error) {
-				setShowAlertMessage(error.data.message);
-				console.log(error);
+		if (userInfo.isLecturer) {
+			async function fetchLecturerCourses() {
+				try {
+					setShowAlertMessage(null);
+					const res = await allLecturerCourses();
+					dispatch(getLecturerCourses(res.data));
+				} catch (error) {
+					setShowAlertMessage(error.data.message);
+					console.log(error);
+				}
 			}
-		}
 
-		fetchCourses();
+			fetchLecturerCourses();
+		} else {
+			async function fetchStudentCourses() {
+				try {
+					setShowAlertMessage(null);
+					const res = await allStudentCourses();
+					dispatch(getStudentCourses(res.data));
+				} catch (error) {
+					setShowAlertMessage(error.data.message);
+					console.log(error);
+				}
+			}
+
+			fetchStudentCourses();
+		}
 	}, []);
 
 	return (
@@ -63,20 +84,47 @@ const MyCourses = () => {
 					)}
 				</div>
 
-				{isLoading ? (
+				{userInfo.isLecturer && isLoading ? (
 					<LargeLoader />
-				) : courses.length === 0 ? (
+				) : userInfo.isLecturer && lecturerCourses.length === 0 ? (
+					<h6>
+						You haven't made any courses yet. Please create one now.
+					</h6>
+				) : (
+					<div className="courses">
+						{lecturerCourses.map((course) => (
+							<Course key={course._id} course={course} />
+						))}
+					</div>
+				)}
+
+				{!userInfo.isLecturer && loadingStudent ? (
+					<LargeLoader />
+				) : !userInfo.isLecturer && studentCourses.length === 0 ? (
 					<h6>You have not selected any courses yet! Select now</h6>
 				) : (
 					<div className="courses">
-						{courses.map((course) => (
-							<Course key={course._id} course={course} />
+						{studentCourses.map((course) => (
+							<Course key={course._id} course={course.courseId} />
 						))}
 					</div>
 				)}
 			</div>
 			{showModal && (
-				<CoursesModal closeModal={() => setShowModal(!showModal)} />
+				<CoursesModal
+					closeModal={async () => {
+						setShowModal(!showModal);
+
+						try {
+							setShowAlertMessage(null);
+							const res = await allStudentCourses(userInfo._id);
+							dispatch(getStudentCourses(res.data));
+						} catch (error) {
+							setShowAlertMessage(error.data.message);
+							console.log(error);
+						}
+					}}
+				/>
 			)}
 			{showAlertMessage && (
 				<ToastErrorMessage message={showAlertMessage} />

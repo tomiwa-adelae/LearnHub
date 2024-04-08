@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { BsFilePdfFill } from "react-icons/bs";
 import { IoCloudUpload, IoBarcode, IoCreate } from "react-icons/io5";
 import { MdOutlineNumbers, MdOutlineTitle } from "react-icons/md";
-import { useNewCourseMutation } from "../slices/courseApiSlice";
+import { useNewLecturerCourseMutation } from "../slices/lecturerCourseApiSlice";
 import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
-import { createCourse } from "../slices/courseSlice";
+import { createLecturerCourse } from "../slices/lecturerCourseSlice";
 import {
 	ToastErrorMessage,
 	ToastSuccessMessage,
@@ -23,7 +23,7 @@ const NewCoursePage = () => {
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(null);
 
-	const [newCourse, { isLoading }] = useNewCourseMutation();
+	const [newLecturerCourse, { isLoading }] = useNewLecturerCourseMutation();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -31,13 +31,13 @@ const NewCoursePage = () => {
 		setShowAlertMessage(null);
 
 		try {
-			const res = await newCourse({
+			const res = await newLecturerCourse({
 				courseCode,
 				courseTitle,
 				courseUnit,
 			}).unwrap();
 
-			dispatch(createCourse(res));
+			dispatch(createLecturerCourse(res));
 			setShowAlertMessage(null);
 			setShowSuccessMessage(res.message);
 			navigate("/dashboard");

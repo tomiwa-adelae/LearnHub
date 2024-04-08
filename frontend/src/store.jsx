@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./slices/apiSlice";
 import authReducer from "./slices/authSlice";
-import courseReducer from "./slices/courseSlice";
+import lecturerCourseReducer from "./slices/lecturerCourseSlice";
+import studentCourseReducer from "./slices/studentCourseSlice";
 import pdfReducer from "./slices/pdfSlice";
 
 const store = configureStore({
 	reducer: {
 		[apiSlice.reducerPath]: apiSlice.reducer,
 		auth: authReducer,
-		course: courseReducer,
+		lecturerCourse: lecturerCourseReducer,
+		studentCourse: studentCourseReducer,
 		pdf: pdfReducer,
 	},
 	middleware: (getDefaultMiddleware) =>

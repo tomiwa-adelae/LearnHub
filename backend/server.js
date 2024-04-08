@@ -7,7 +7,8 @@ import cors from "cors";
 
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
-import courseRoutes from "./routes/courseRoutes.js";
+import lecturerCourseRoutes from "./routes/lecturerCourseRoutes.js";
+import studentCourseRoutes from "./routes/studentCourseRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import pdfRoutes from "./routes/pdfRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
@@ -34,7 +35,8 @@ app.use(cookieParser());
 
 // API routes
 app.use("/api/users", userRoutes);
-app.use("/api/courses", courseRoutes);
+app.use("/api/student-courses", studentCourseRoutes);
+app.use("/api/lecturer-courses", lecturerCourseRoutes);
 app.use("/api/uploads", uploadRoutes);
 app.use("/api/pdfs", pdfRoutes);
 

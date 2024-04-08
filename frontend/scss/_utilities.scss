@@ -285,17 +285,18 @@ form {
 			border-radius: $radius;
 			text-align: center;
 			width: 100%;
-			padding: 2rem;
+			padding: 3rem 2rem;
 			box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			flex-direction: column;
-			min-height: 250px;
+			min-height: 300px;
 
 			h5 {
 				font-family: "Joti One";
 				text-transform: uppercase;
+				// margin-bottom: 1rem;
 			}
 
 			div {
@@ -373,7 +374,8 @@ form {
 		.courses {
 			margin-top: 2rem;
 			.course {
-				background-color: #f59c68;
+				// background-color: #f59c68;
+				color: $black-color;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;

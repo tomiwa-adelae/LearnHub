@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/userApiSlice";
 import { logout } from "../slices/authSlice";
 import { useDispatch } from "react-redux";
+import { resetLecturerCourses } from "../slices/lecturerCourseSlice";
+import { resetStudentCourses } from "../slices/studentCourseSlice";
 
 const ProfileDetails = ({ userInfo }) => {
 	const dispatch = useDispatch();
@@ -17,7 +19,8 @@ const ProfileDetails = ({ userInfo }) => {
 		try {
 			await logoutApiCall().unwrap();
 			dispatch(logout());
-
+			dispatch(resetLecturerCourses());
+			dispatch(resetStudentCourses());
 			navigate("/login");
 		} catch (error) {
 			console.error(error);

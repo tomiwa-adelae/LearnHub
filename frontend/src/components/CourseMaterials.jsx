@@ -3,12 +3,12 @@ import Material from "./Material";
 import { MdPostAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const CourseMaterials = ({ course, pdfs }) => {
+const CourseMaterials = ({ userInfo, course, pdfs }) => {
 	return (
 		<div className="course-materials">
 			<div className="head">
 				<h4 className="text-primary">Course materials</h4>
-				{course.user.isLecturer ? (
+				{userInfo.isLecturer ? (
 					<Link
 						to={`/new-pdf/${course._id}`}
 						className="btn btn-primary"
@@ -23,15 +23,19 @@ const CourseMaterials = ({ course, pdfs }) => {
 			</div>
 
 			<div className="materials">
-				{pdfs.map((pdf) => (
-					<div
-						style={{ borderColor: `${course.courseColor}` }}
-						key={pdf._id}
-						className="material"
-					>
-						<Material pdfObject={pdf} />
-					</div>
-				))}
+				{pdfs.length === 0 ? (
+					<h6>This course does not contain any PDF materials.</h6>
+				) : (
+					pdfs.map((pdf) => (
+						<div
+							style={{ borderColor: `${course.courseColor}` }}
+							key={pdf._id}
+							className="material"
+						>
+							<Material pdfObject={pdf} />
+						</div>
+					))
+				)}
 			</div>
 		</div>
 	);

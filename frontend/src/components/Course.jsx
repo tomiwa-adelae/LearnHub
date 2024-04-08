@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 
 const Course = ({ course }) => {
-	console.log(course);
 	return (
 		<Link to={`/course/${course._id}`}>
 			<div
 				style={{ backgroundColor: `${course.courseColor}` }}
 				className="course"
 			>
-				<h5>{course.courseCode}</h5>
+				<h5>
+					{course.courseCode} - {course.courseTitle}
+				</h5>
+				{/* <h5>{course.courseTitle}</h5> */}
 
 				<div>
 					<h6>Course unit: {course.courseUnit}</h6>

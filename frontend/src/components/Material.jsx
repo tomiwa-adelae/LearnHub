@@ -22,7 +22,7 @@ const Material = ({ pdfObject }) => {
 				<BsFilePdfFill className="pdf-icon" />
 				<h5>{pdfObject.pdfTitle}</h5>
 
-				<div>
+				<div className="btns">
 					<button
 						onClick={() => showPdf(pdfObject.pdfMaterial)}
 						className="btn btn-primary"
