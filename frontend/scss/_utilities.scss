@@ -140,6 +140,11 @@ h6 {
 		padding: 0.5rem 2rem;
 	}
 
+	&:disabled {
+		opacity: $opacity;
+		cursor: not-allowed;
+	}
+
 	@keyframes moveX {
 		0% {
 			transform: translateX(0%);

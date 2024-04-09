@@ -4,6 +4,7 @@ import authReducer from "./slices/authSlice";
 import lecturerCourseReducer from "./slices/lecturerCourseSlice";
 import studentCourseReducer from "./slices/studentCourseSlice";
 import pdfReducer from "./slices/pdfSlice";
+import conversationReducer from "./slices/conversationSlice";
 
 const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
 		lecturerCourse: lecturerCourseReducer,
 		studentCourse: studentCourseReducer,
 		pdf: pdfReducer,
+		conversation: conversationReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(apiSlice.middleware),

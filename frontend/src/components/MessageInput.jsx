@@ -1,14 +1,61 @@
+import { useState } from "react";
 import { IoSendSharp } from "react-icons/io5";
+import { useSelector, useDispatch } from "react-redux";
+import { useSendMessageMutation } from "../slices/conversationApiSlice";
+import { createMessage, getMessages } from "../slices/conversationSlice";
+import { SmallLoader } from "./Loader";
 
-const MessageInput = () => {
+const MessageInput = ({ selectedConversation }) => {
+	const dispatch = useDispatch();
+
+	const [showAlertMessage, setShowAlertMessage] = useState(null);
+
+	const [message, setMessage] = useState("");
+
+	const [sendMessage, { isLoading }] = useSendMessageMutation();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			setShowAlertMessage(null);
+
+			const res = await sendMessage({
+				message,
+				id: selectedConversation._id,
+			}).unwrap();
+
+			dispatch(createMessage(res));
+			setShowAlertMessage(null);
+			setMessage("");
+		} catch (error) {
+			setShowAlertMessage(error.data.message);
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="message-input">
-			<form>
+			<form onSubmit={handleSubmit}>
 				<div>
-					<input type="text" placeholder="Type your message..." />
+					<input
+						type="text"
+						placeholder="Type your message..."
+						value={message}
+						onChange={(e) => setMessage(e.target.value)}
+					/>
 				</div>
-				<button className="btn btn-white btn-input">
-					Send <IoSendSharp />
+				<button
+					disabled={isLoading}
+					className="btn btn-white btn-input"
+				>
+					{isLoading ? (
+						<SmallLoader />
+					) : (
+						<>
+							Send <IoSendSharp />
+						</>
+					)}
 				</button>
 			</form>
 		</div>

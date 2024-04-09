@@ -70,6 +70,12 @@
 								color: $primary-color;
 							}
 
+							img {
+								width: 45px;
+								border-radius: 100%;
+								vertical-align: middle;
+							}
+
 							.details {
 								display: flex;
 								align-items: center;
@@ -152,6 +158,12 @@
 								font-size: 2.5rem;
 								color: $primary-color;
 							}
+
+							img {
+								width: 45px;
+								border-radius: 100%;
+								vertical-align: middle;
+							}
 						}
 
 						.message-search-bar {
@@ -191,6 +203,12 @@
 									font-size: 2.5rem;
 									margin-bottom: 0.5rem;
 									color: $primary-color;
+								}
+
+								img {
+									width: 45px;
+									border-radius: 100%;
+									vertical-align: middle;
 								}
 
 								.chat-details {
