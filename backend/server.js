@@ -11,6 +11,8 @@ import lecturerCourseRoutes from "./routes/lecturerCourseRoutes.js";
 import studentCourseRoutes from "./routes/studentCourseRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import pdfRoutes from "./routes/pdfRoutes.js";
+import chatUserRoutes from "./routes/chatUserRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const PORT = process.env.PORT || 5000;
@@ -39,6 +41,10 @@ app.use("/api/student-courses", studentCourseRoutes);
 app.use("/api/lecturer-courses", lecturerCourseRoutes);
 app.use("/api/uploads", uploadRoutes);
 app.use("/api/pdfs", pdfRoutes);
+
+// Messages/Chat routes/Messages/Conversations
+app.use("/api/chats-users", chatUserRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.get("/", (req, res) => {
 	res.send("API up & running...");
