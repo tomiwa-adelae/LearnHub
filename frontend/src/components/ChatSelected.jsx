@@ -1,5 +1,4 @@
 import MessageInput from "./MessageInput";
-import MessageSearchBar from "./MessageSearchBar";
 import Messages from "./Messages";
 
 const ChatSelected = ({ selectedConversation }) => {
@@ -13,7 +12,6 @@ const ChatSelected = ({ selectedConversation }) => {
 					/>
 					<h5>{selectedConversation.name}</h5>
 				</div>
-				<MessageSearchBar />
 			</div>
 			<div className="message-wrapper">
 				<Messages selectedConversation={selectedConversation} />

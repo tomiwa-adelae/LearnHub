@@ -10,7 +10,6 @@
 			max-height: calc(100vh - 100px);
 			overflow-y: hidden;
 			border-top: 1px solid $primary-color;
-			// border-bottom: 1px solid $primary-color;
 
 			.chat-side-bar {
 				.chat-search-bar {
@@ -103,6 +102,7 @@
 					}
 				}
 			}
+
 			.message-container {
 				width: 100%;
 				border-left: 1px solid $primary-color;
@@ -139,10 +139,9 @@
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
-						padding: 0 1rem;
+						padding: 0.5rem 1rem;
 						border-bottom: 1px solid $primary-color;
 						width: 100%;
-						// background-color: $primary-color;
 
 						.details {
 							display: flex;
@@ -163,17 +162,6 @@
 								width: 45px;
 								border-radius: 100%;
 								vertical-align: middle;
-							}
-						}
-
-						.message-search-bar {
-							text-align: right;
-							form {
-								div {
-									input {
-										width: 300px;
-									}
-								}
 							}
 						}
 					}
@@ -227,12 +215,20 @@
 									}
 								}
 							}
+
 							.message-mine {
 								justify-content: flex-end;
 
 								svg {
 									display: none;
 								}
+							}
+
+							h6 {
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								height: 55vh;
 							}
 						}
 

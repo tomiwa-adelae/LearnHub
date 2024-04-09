@@ -6,6 +6,7 @@ import { useAllMessagesMutation } from "../slices/conversationApiSlice";
 import { getMessages } from "../slices/conversationSlice";
 import { LargeLoader } from "./Loader";
 import ScrollToBottom from "./ScrollToBottom";
+import ChatSkeleton from "./ChatSkeleton";
 
 const Messages = ({ selectedConversation }) => {
 	const dispatch = useDispatch();
@@ -33,59 +34,24 @@ const Messages = ({ selectedConversation }) => {
 
 	return (
 		<div className="messages">
-			{isLoading && <LargeLoader />}
-			{messages.map((message) => (
-				<Message
-					key={message._id}
-					message={message}
-					selectedConversation={selectedConversation}
-				/>
-			))}
+			{/* {isLoading && <LargeLoader />} */}
+			{!isLoading &&
+				messages.length > 0 &&
+				messages.map((message) => (
+					<Message
+						key={message._id}
+						message={message}
+						selectedConversation={selectedConversation}
+					/>
+				))}
 			<ScrollToBottom />
 
-			{/* <div className="message">
-				<FaCircleUser className="user-icon" />
-				<div className="chat-details">
-					<p>Lorem.</p>
-					<small>12:90</small>
-				</div>
-			</div>
-			<div className="message message-mine">
-				<FaCircleUser className="user-icon" />
-				<div className="chat-details">
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Id doloremque aut ad odit.
-					</p>
-					<small>12:90</small>
-				</div>
-			</div>
-			<div className="message message-mine">
-				<FaCircleUser className="user-icon" />
-				<div className="chat-details">
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Id doloremque aut ad odit, atque quia sit consequatur
-						ipsum minima dolor porro? Fugiat quis accusamus libero
-						fuga facere aspernatur sapiente vero.
-					</p>
-					<small>12:90</small>
-				</div>
-			</div>
-			<div className="message">
-				<FaCircleUser className="user-icon" />
-				<div className="chat-details">
-					<p>Lorem.</p>
-					<small>12:90</small>
-				</div>
-			</div>
-			<div className="message">
-				<FaCircleUser className="user-icon" />
-				<div className="chat-details">
-					<p>Lorem.</p>
-					<small>12:90</small>
-				</div>
-			</div> */}
+			{isLoading &&
+				[...Array(2)].map((_, idx) => <ChatSkeleton key={idx} />)}
+
+			{!isLoading && messages.length === 0 && (
+				<h6>Send a message to start the conversation</h6>
+			)}
 		</div>
 	);
 };

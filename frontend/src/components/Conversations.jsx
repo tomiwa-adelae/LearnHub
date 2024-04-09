@@ -6,6 +6,7 @@ import { getConversations } from "../slices/conversationSlice";
 import Conversation from "./Conversation";
 import { LargeLoader } from "./Loader";
 import { ToastErrorMessage } from "./ToastMessage";
+import ConversationSkeleton from "./ConversationSkeleton";
 
 const Conversations = () => {
 	const dispatch = useDispatch();
@@ -32,14 +33,21 @@ const Conversations = () => {
 
 	return (
 		<div className="conversations">
-			{isLoading && <LargeLoader />}
+			{/* {isLoading && <LargeLoader />} */}
 
-			{conversations.map((conversation) => (
-				<Conversation
-					key={conversation._id}
-					conversation={conversation}
-				/>
-			))}
+			{!isLoading &&
+				conversations.map((conversation) => (
+					<Conversation
+						key={conversation._id}
+						conversation={conversation}
+					/>
+				))}
+
+			{isLoading &&
+				[...Array(4)].map((_, idx) => (
+					<ConversationSkeleton key={idx} />
+				))}
+
 			{showAlertMessage && (
 				<ToastErrorMessage message={showAlertMessage} />
 			)}
