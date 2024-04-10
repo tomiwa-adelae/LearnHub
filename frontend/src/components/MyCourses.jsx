@@ -70,7 +70,8 @@ const MyCourses = () => {
 								onClick={(e) => setShowModal(!showModal)}
 								className="btn btn-primary"
 							>
-								<MdPostAdd /> New courses
+								New courses
+								<MdPostAdd />
 							</Link>
 						</>
 					) : (
@@ -79,7 +80,8 @@ const MyCourses = () => {
 								onClick={(e) => setShowModal(!showModal)}
 								className="btn btn-primary"
 							>
-								<MdPostAdd /> Add courses
+								Add courses
+								<MdPostAdd />
 							</button>
 						</>
 					)}

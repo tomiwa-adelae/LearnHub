@@ -23,10 +23,12 @@ const Header = () => {
 						{userInfo ? (
 							<>
 								<Link to="/dashboard">
-									<MdSpaceDashboard /> <span>Dashboard</span>
+									<span>Dashboard</span>
+									<MdSpaceDashboard />
 								</Link>
 								<Link to="/chat">
-									<PiChatsFill /> <span>Chats</span>
+									<span>Chats</span>
+									<PiChatsFill />
 								</Link>
 								<Link to="/profile">
 									<img
@@ -39,12 +41,12 @@ const Header = () => {
 						) : (
 							<>
 								<Link to="/login">
-									<IoLogIn />
 									<span>Login</span>
+									<IoLogIn />
 								</Link>
 								<Link to="/register">
-									<IoLogIn />
 									<span>Register</span>
+									<IoLogIn />
 								</Link>
 							</>
 						)}

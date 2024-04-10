@@ -74,7 +74,6 @@ header {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				// background-color: burlywood;
 
 				a {
 					font-size: 13px;
@@ -88,6 +87,8 @@ header {
 						font-size: 2rem;
 						vertical-align: middle;
 						margin-right: 0.5rem;
+						animation: moveX 3s infinite;
+						color: $primary-color;
 					}
 
 					img {

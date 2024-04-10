@@ -44,13 +44,16 @@ const ProfileDetails = ({ userInfo }) => {
 
 				<div>
 					<Link to="/edit-profile" className="btn btn-grey">
-						<MdEditSquare /> Edit profile
+						Edit profile
+						<MdEditSquare />
 					</Link>
 					<Link to="/change-password" className="btn btn-secondary">
-						<IoMdLock /> Change password
+						Change password
+						<IoMdLock />
 					</Link>
 					<button onClick={logoutHandler} className="btn btn-danger">
-						<IoLogOut /> Logout
+						Logout
+						<IoLogOut />
 					</button>
 				</div>
 			</section>

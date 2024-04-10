@@ -9,6 +9,7 @@ const Conversation = ({ conversation }) => {
 	const { onlineUsers } = useSocketContext();
 
 	const isOnline = onlineUsers.includes(conversation._id);
+
 	return (
 		<div
 			onClick={() => dispatch(setConversation(conversation))}
@@ -23,7 +24,6 @@ const Conversation = ({ conversation }) => {
 			</div>
 			<div className="details">
 				<h5>{conversation.name}</h5>
-				<small>12:30</small>
 			</div>
 		</div>
 	);

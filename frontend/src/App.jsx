@@ -40,9 +40,12 @@ function App() {
 					element={<RegisterLecturerPage />}
 				/>
 				<Route path="/reset-password" element={<ResetPasswordPage />} />
-				<Route path="/verify-code" element={<VerifyCodePage />} />
 				<Route
-					path="/update-password"
+					path="/verify-code/:email"
+					element={<VerifyCodePage />}
+				/>
+				<Route
+					path="/update-password/:id/:code/:email"
 					element={<UpdatePasswordPage />}
 				/>
 				{/* Protected routes */}

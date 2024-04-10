@@ -13,11 +13,13 @@ const CourseMaterials = ({ userInfo, course, pdfs }) => {
 						to={`/new-pdf/${course._id}`}
 						className="btn btn-primary"
 					>
-						<MdPostAdd /> New PDF
+						New PDF
+						<MdPostAdd />
 					</Link>
 				) : (
 					<Link to="/chat" className="btn btn-primary">
-						<IoChatbox /> Chat with Lecturer
+						Chat with Lecturer
+						<IoChatbox />
 					</Link>
 				)}
 			</div>

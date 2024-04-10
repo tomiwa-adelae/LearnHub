@@ -5,9 +5,9 @@ import User from "../models/userModel.js";
 // @route GET /api/chat-users
 // @access Private
 const getChatUsers = asyncHandler(async (req, res) => {
-	const chatUsers = await User.find({ _id: { $ne: req.user.id } }).select(
-		"-password"
-	);
+	const chatUsers = await User.find({ _id: { $ne: req.user.id } })
+		.select("-password")
+		.sort({ createdAt: -1 });
 
 	res.status(200).json(chatUsers);
 });

@@ -1,5 +1,4 @@
 import { IoSendSharp } from "react-icons/io5";
-import SearchableCourses from "./SearchableCourses";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAllLecturerCoursesMutation } from "../slices/lecturerCourseApiSlice";

@@ -33,8 +33,6 @@ const Conversations = () => {
 
 	return (
 		<div className="conversations">
-			{/* {isLoading && <LargeLoader />} */}
-
 			{!isLoading &&
 				conversations.map((conversation) => (
 					<Conversation

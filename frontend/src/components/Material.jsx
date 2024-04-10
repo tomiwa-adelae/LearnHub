@@ -27,7 +27,8 @@ const Material = ({ pdfObject }) => {
 						onClick={() => showPdf(pdfObject.pdfMaterial)}
 						className="btn btn-primary"
 					>
-						<IoOpen /> View PDF
+						View PDF
+						<IoOpen />
 					</button>
 					<a
 						href={`${BASE_URL}/uploads/${pdfObject.pdfMaterial}`}
@@ -36,7 +37,8 @@ const Material = ({ pdfObject }) => {
 						download
 						className="btn btn-secondary"
 					>
-						<IoDownload /> Download PDF
+						Download PDF
+						<IoDownload />
 					</a>
 				</div>
 			</>
