@@ -22,27 +22,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/:id", upload.single("coursePDF"), protect, async (req, res) => {
-	// console.log(req.file);
-	// const { } = req.body;
-	// console.log(req.file);
-	// const coursePDF = req.file.filename;
-	// try {
-	// 	const course = await Course.findById(req.params.id);
-	// 	if (course) {
-	// 		course.coursePDFs.unshift({ courseTitle, coursePDF });
-	// 		await course.save();
-	// 		res.status(200).json({
-	// 			message: "PDF material uploaded successfully!",
-	// 		});
-	// 	} else {
-	// 		res.status(400);
-	// 		throw new Error("Internal server error! Course not found!");
-	// 	}
-	// } catch (error) {
-	// 	res.status(400);
-	// 	throw new Error("Internal server error! ");
-	// }
-
 	const pdfMaterial = req.file.filename;
 	const pdfTitle = req.body.pdfTitle;
 	const user = req.user._id;

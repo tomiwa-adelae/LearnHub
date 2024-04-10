@@ -7,6 +7,7 @@ import { getMessages } from "../slices/conversationSlice";
 import { LargeLoader } from "./Loader";
 import ScrollToBottom from "./ScrollToBottom";
 import ChatSkeleton from "./ChatSkeleton";
+import listenMessages from "../context/listenMessages";
 
 const Messages = ({ selectedConversation }) => {
 	const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const Messages = ({ selectedConversation }) => {
 	const { messages } = useSelector((state) => state.conversation);
 
 	const [allMessages, { isLoading }] = useAllMessagesMutation();
+
+	listenMessages();
 
 	useEffect(() => {
 		async function fetchMessages() {

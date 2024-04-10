@@ -1,6 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import Conversation from "../models/conversationModel.js";
 import Message from "../models/messageModel.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 // Desc Get all message between 2 users with the id
 // @route GET /api/messages/:id
@@ -48,6 +49,10 @@ const sendMessage = asyncHandler(async (req, res) => {
 	await Promise.all([conversation.save(), newMessage.save()]);
 
 	// SOCKET IO FUNCTIONALITY GOES HERE
+	const receiverSocketId = getReceiverSocketId(receiverId);
+	if (receiverSocketId) {
+		io.to(receiverSocketId).emit("newMessage", newMessage);
+	}
 
 	res.status(201).json(newMessage);
 });

@@ -29,9 +29,15 @@ const Material = ({ pdfObject }) => {
 					>
 						<IoOpen /> View PDF
 					</button>
-					<div className="btn btn-secondary">
+					<a
+						href={`${BASE_URL}/uploads/${pdfObject.pdfMaterial}`}
+						color="transparent"
+						target="_blank"
+						download
+						className="btn btn-secondary"
+					>
 						<IoDownload /> Download PDF
-					</div>
+					</a>
 				</div>
 			</>
 			{pdfFile && (

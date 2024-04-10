@@ -10,6 +10,7 @@ import { LargeLoader } from "./Loader";
 import { ToastErrorMessage } from "../components/ToastMessage";
 import { getStudentCourses } from "../slices/studentCourseSlice";
 import { useAllStudentCoursesMutation } from "../slices/studentCourseApiSlice";
+import CourseSkeleton from "./CourseSkeleton";
 
 const MyCourses = () => {
 	const [showModal, setShowModal] = useState(null);
@@ -84,13 +85,7 @@ const MyCourses = () => {
 					)}
 				</div>
 
-				{userInfo.isLecturer && isLoading ? (
-					<LargeLoader />
-				) : userInfo.isLecturer && lecturerCourses.length === 0 ? (
-					<h6>
-						You haven't made any courses yet. Please create one now.
-					</h6>
-				) : (
+				{userInfo.isLecturer && !isLoading && (
 					<div className="courses">
 						{lecturerCourses.map((course) => (
 							<Course key={course._id} course={course} />
@@ -98,15 +93,44 @@ const MyCourses = () => {
 					</div>
 				)}
 
-				{!userInfo.isLecturer && loadingStudent ? (
-					<LargeLoader />
-				) : !userInfo.isLecturer && studentCourses.length === 0 ? (
-					<h6>You have not selected any courses yet! Select now</h6>
-				) : (
+				{userInfo.isLecturer &&
+					!isLoading &&
+					lecturerCourses.length === 0 && (
+						<h6>
+							You haven't made any courses yet. Please create one
+							now.
+						</h6>
+					)}
+
+				{userInfo.isLecturer && isLoading && (
+					<div className="skeleton-wrapper">
+						<CourseSkeleton />
+						<CourseSkeleton />
+						<CourseSkeleton />
+					</div>
+				)}
+				{/* Student */}
+				{!userInfo.isLecturer && !loadingStudent && (
 					<div className="courses">
 						{studentCourses.map((course) => (
 							<Course key={course._id} course={course.courseId} />
 						))}
+					</div>
+				)}
+
+				{!userInfo.isLecturer &&
+					!loadingStudent &&
+					studentCourses.length === 0 && (
+						<h6>
+							You have not selected any courses yet! Select now
+						</h6>
+					)}
+
+				{!userInfo.isLecturer && loadingStudent && (
+					<div className="skeleton-wrapper">
+						<CourseSkeleton />
+						<CourseSkeleton />
+						<CourseSkeleton />
 					</div>
 				)}
 			</div>

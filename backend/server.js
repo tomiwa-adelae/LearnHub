@@ -15,11 +15,11 @@ import chatUserRoutes from "./routes/chatUserRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
+import { app, server } from "./socket/socket.js";
+
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-
-const app = express();
 
 // Express body parser
 app.use(express.json({ limit: "50mb" }));
@@ -57,4 +57,8 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server up and running at port ${PORT}...`));
+server.listen(PORT, () =>
+	console.log(`Server up and running at port ${PORT}...`)
+);
+
+// app.listen(PORT, () => console.log(`Server up and running at port ${PORT}...`));

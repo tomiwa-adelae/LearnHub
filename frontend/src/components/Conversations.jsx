@@ -5,7 +5,7 @@ import { useAllConversationsMutation } from "../slices/conversationApiSlice";
 import { getConversations } from "../slices/conversationSlice";
 import Conversation from "./Conversation";
 import { LargeLoader } from "./Loader";
-import { ToastErrorMessage } from "./ToastMessage";
+import { ToastErrorMessage, ToastSuccessMessage } from "./ToastMessage";
 import ConversationSkeleton from "./ConversationSkeleton";
 
 const Conversations = () => {
@@ -47,6 +47,10 @@ const Conversations = () => {
 				[...Array(4)].map((_, idx) => (
 					<ConversationSkeleton key={idx} />
 				))}
+
+			{!isLoading && conversations.length === 0 && (
+				<ToastSuccessMessage message={"There are no users!"} />
+			)}
 
 			{showAlertMessage && (
 				<ToastErrorMessage message={showAlertMessage} />
