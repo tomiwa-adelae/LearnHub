@@ -46,12 +46,18 @@ app.use("/api/pdfs", pdfRoutes);
 app.use("/api/chats-users", chatUserRoutes);
 app.use("/api/messages", messageRoutes);
 
-app.get("/", (req, res) => {
-	res.send("API up & running...");
-});
+// app.get("/", (req, res) => {
+// 	res.send("API up & running...");
+// });
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+app.get("*", (req, res) =>
+	res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+);
 
 // Middleware
 app.use(notFound);
