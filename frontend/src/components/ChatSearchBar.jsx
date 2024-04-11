@@ -33,7 +33,7 @@ const ChatSearchBar = () => {
 			let searchResult = conversations.filter((e) =>
 				Object.values(e)
 					.map((e) => String(e).toLowerCase())
-					.some((e) => e.includes(search))
+					.some((e) => e.includes(search.toLowerCase()))
 			);
 
 			dispatch(getConversations(searchResult));

@@ -2,9 +2,9 @@ import { IoSendSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAllLecturerCoursesMutation } from "../slices/lecturerCourseApiSlice";
-import { useAllStudentCoursesMutation } from "../slices/studentCourseApiSlice";
 import { getStudentCourses } from "../slices/studentCourseSlice";
 import { getLecturerCourses } from "../slices/lecturerCourseSlice";
+import { ToastErrorMessage } from "./ToastMessage";
 
 const SearchBar = () => {
 	const [search, setSearch] = useState("");
@@ -17,9 +17,7 @@ const SearchBar = () => {
 
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 
-	const [allLecturerCourses, { isLoading }] = useAllLecturerCoursesMutation();
-	const [allStudentCourses, { isLoading: loadingStudent }] =
-		useAllStudentCoursesMutation();
+	const [allLecturerCourses] = useAllLecturerCoursesMutation();
 
 	useEffect(() => {
 		if (!search) {
@@ -85,14 +83,14 @@ const SearchBar = () => {
 				let filteredCourses = lecturerCourses.filter((e) =>
 					Object.values(e)
 						.map((e) => String(e).toLowerCase())
-						.some((e) => e.includes(search))
+						.some((e) => e.includes(search.toLowerCase()))
 				);
 				dispatch(getLecturerCourses(filteredCourses));
 			} else {
 				let filteredCourses = studentCourses.filter((e) =>
 					Object.values(e.courseId)
 						.map((e) => String(e).toLowerCase())
-						.some((e) => e.includes(search))
+						.some((e) => e.includes(search.toLowerCase()))
 				);
 				dispatch(getStudentCourses(filteredCourses));
 			}
@@ -100,21 +98,26 @@ const SearchBar = () => {
 	};
 
 	return (
-		<div className="search-bar">
-			<form onSubmit={submitHandler}>
-				<div>
-					<input
-						type="text"
-						placeholder="Search courses..."
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					/>
-				</div>
-				<button className="btn btn-white btn-input">
-					Search <IoSendSharp />
-				</button>
-			</form>
-		</div>
+		<>
+			<div className="search-bar">
+				<form onSubmit={submitHandler}>
+					<div>
+						<input
+							type="text"
+							placeholder="Search courses..."
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+					</div>
+					<button className="btn btn-white btn-input">
+						Search <IoSendSharp />
+					</button>
+				</form>
+			</div>
+			{showAlertMessage && (
+				<ToastErrorMessage message={showAlertMessage} />
+			)}
+		</>
 	);
 };
 
