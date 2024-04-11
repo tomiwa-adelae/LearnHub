@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAllLecturerCoursesMutation } from "../slices/lecturerCourseApiSlice";
 import { getLecturerCourses } from "../slices/lecturerCourseSlice";
-import { LargeLoader } from "./Loader";
 import { ToastErrorMessage } from "../components/ToastMessage";
 import { getStudentCourses } from "../slices/studentCourseSlice";
 import { useAllStudentCoursesMutation } from "../slices/studentCourseApiSlice";
@@ -37,7 +36,6 @@ const MyCourses = () => {
 					dispatch(getLecturerCourses(res.data));
 				} catch (error) {
 					setShowAlertMessage(error.data.message);
-					console.log(error);
 				}
 			}
 
@@ -50,7 +48,6 @@ const MyCourses = () => {
 					dispatch(getStudentCourses(res.data));
 				} catch (error) {
 					setShowAlertMessage(error.data.message);
-					console.log(error);
 				}
 			}
 
@@ -147,7 +144,6 @@ const MyCourses = () => {
 							dispatch(getStudentCourses(res.data));
 						} catch (error) {
 							setShowAlertMessage(error.data.message);
-							console.log(error);
 						}
 					}}
 				/>

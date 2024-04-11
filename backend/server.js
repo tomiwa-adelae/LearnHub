@@ -60,5 +60,3 @@ app.use(errorHandler);
 server.listen(PORT, () =>
 	console.log(`Server up and running at port ${PORT}...`)
 );
-
-// app.listen(PORT, () => console.log(`Server up and running at port ${PORT}...`));

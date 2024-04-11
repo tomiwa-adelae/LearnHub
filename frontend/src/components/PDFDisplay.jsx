@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf";
-
-// import pdf from "../pdf.pdf";
 import { IoCloseCircle } from "react-icons/io5";
 
 const PDFDisplay = ({ pdfFile, closeModal }) => {

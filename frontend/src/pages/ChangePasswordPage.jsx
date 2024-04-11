@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { IoMdLock } from "react-icons/io";
-import {
-	IoEyeOffSharp,
-	IoEyeSharp,
-	IoLogInSharp,
-	IoSave,
-} from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { FaCircleUser } from "react-icons/fa6";
-import { MdOutlineNumbers } from "react-icons/md";
-import { FcDepartment } from "react-icons/fc";
+import { IoEyeOffSharp, IoEyeSharp, IoSave } from "react-icons/io5";
 import Footer from "../components/Footer";
 import { useUpdatePasswordMutation } from "../slices/userApiSlice";
 

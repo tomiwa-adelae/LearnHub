@@ -10,7 +10,6 @@ const Course = ({ course }) => {
 				<h5>
 					{course.courseCode} - {course.courseTitle}
 				</h5>
-				{/* <h5>{course.courseTitle}</h5> */}
 
 				<div>
 					<h6>Course unit: {course.courseUnit}</h6>

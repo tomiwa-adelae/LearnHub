@@ -1,10 +1,8 @@
-import { FaCircleUser } from "react-icons/fa6";
 import Message from "./Message";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAllMessagesMutation } from "../slices/conversationApiSlice";
 import { getMessages } from "../slices/conversationSlice";
-import { LargeLoader } from "./Loader";
 import ScrollToBottom from "./ScrollToBottom";
 import ChatSkeleton from "./ChatSkeleton";
 import listenMessages from "../context/listenMessages";
@@ -27,8 +25,7 @@ const Messages = ({ selectedConversation }) => {
 				const res = await allMessages(selectedConversation._id);
 				dispatch(getMessages(res.data));
 			} catch (error) {
-				// setShowAlertMessage(error.data.message);
-				console.log(error);
+				setShowAlertMessage(error.data.message);
 			}
 		}
 
@@ -37,7 +34,6 @@ const Messages = ({ selectedConversation }) => {
 
 	return (
 		<div className="messages">
-			{/* {isLoading && <LargeLoader />} */}
 			{!isLoading &&
 				messages.length > 0 &&
 				messages.map((message) => (

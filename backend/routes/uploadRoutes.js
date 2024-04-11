@@ -45,8 +45,6 @@ router.post("/:id", upload.single("coursePDF"), protect, async (req, res) => {
 		res.status(400);
 		throw new Error("Internal server error! ");
 	}
-
-	// console.log({ pdfMaterial, pdfTitle, user, courseId });
 });
 
 export default router;

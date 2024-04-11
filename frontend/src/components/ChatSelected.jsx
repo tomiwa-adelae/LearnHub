@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getConversations, setConversation } from "../slices/conversationSlice";
 import { useAllConversationsMutation } from "../slices/conversationApiSlice";
 import { ToastErrorMessage } from "./ToastMessage";
+import { IoArrowBack } from "react-icons/io5";
 
 const ChatSelected = ({ selectedConversation }) => {
 	const dispatch = useDispatch();
@@ -47,6 +48,10 @@ const ChatSelected = ({ selectedConversation }) => {
 			<div className="chat-selected">
 				<div className="header">
 					<div className="details">
+						<IoArrowBack
+							onClick={() => dispatch(setConversation(null))}
+							className="back-btn"
+						/>
 						<img
 							src={selectedConversation.profilePicture}
 							alt={selectedConversation.name}

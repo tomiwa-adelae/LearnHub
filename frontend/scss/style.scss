@@ -1,18 +1,10 @@
 @import "config";
 @import "utilities";
 @import "homepage";
-@import "loginpage";
-@import "registerpage";
+@import "formpage";
 @import "dashboardpage";
 @import "coursepage";
-@import "newPDFpage";
-@import "newcoursepage";
-@import "resetpasswordpage";
-@import "verifycodepage";
-@import "updatepasswordpage";
 @import "profilepage";
-@import "editprofilepage";
-@import "changepasswordpage";
 @import "chatpage";
 
 * {
@@ -40,10 +32,7 @@ body {
 }
 
 header {
-	// background-color: red;
 	padding: 1rem 0;
-	// border-bottom: 2px dotted $primary-color;
-	// box-shadow: rgba($primary-color, 0.14) 0px 3px 8px;
 	height: 90px;
 
 	.container {
@@ -117,3 +106,5 @@ footer {
 		font-family: "Joti One";
 	}
 }
+
+@import "mobile";

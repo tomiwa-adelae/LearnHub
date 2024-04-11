@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { FaCircleUser } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { useAllConversationsMutation } from "../slices/conversationApiSlice";
 import { getConversations } from "../slices/conversationSlice";
 import Conversation from "./Conversation";
-import { LargeLoader } from "./Loader";
 import { ToastErrorMessage, ToastSuccessMessage } from "./ToastMessage";
 import ConversationSkeleton from "./ConversationSkeleton";
 

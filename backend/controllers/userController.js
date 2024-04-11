@@ -40,7 +40,6 @@ const authUser = asyncHandler(async (req, res) => {
 			isLecturer: user.isLecturer,
 		});
 	} else {
-		console.log("Error in Auth user controller");
 		res.status(401);
 		throw new Error("Invalid email or password!");
 	}
@@ -115,7 +114,6 @@ const registerUser = asyncHandler(async (req, res) => {
 			isLecturer: user.isLecturer,
 		});
 	} else {
-		console.log("Error in Register user controller");
 		res.status(401);
 		throw new Error("500 - Internal Server Error!");
 	}
@@ -169,7 +167,6 @@ const registerLecturer = asyncHandler(async (req, res) => {
 			isLecturer: user.isLecturer,
 		});
 	} else {
-		console.log("Error in Register lecturer controller");
 		res.status(401);
 		throw new Error("500 - Internal Server Error!");
 	}
@@ -263,8 +260,6 @@ const updatePassword = asyncHandler(async (req, res) => {
 // @access Public
 const resetPassword = asyncHandler(async (req, res) => {
 	const { email } = req.body;
-
-	console.log(email);
 
 	if (!email) {
 		res.status(400);
@@ -411,7 +406,7 @@ const updateNewPassword = asyncHandler(async (req, res) => {
 		res.status(201).json({ message: "Password successfully updated!" });
 	} else {
 		res.status(401);
-		throw new Error("An error occured! User not found !");
+		throw new Error("An error occurred! User not found !");
 	}
 });
 

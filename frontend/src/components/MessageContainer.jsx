@@ -16,7 +16,11 @@ const MessageContainer = () => {
 	}, [setConversation]);
 
 	return (
-		<div className="message-container">
+		<div
+			className={`message-container ${
+				selectedConversation ? "open" : ""
+			}`}
+		>
 			{!selectedConversation ? (
 				<NoChatSelected />
 			) : (

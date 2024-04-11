@@ -1,4 +1,3 @@
-import { FaCircleUser } from "react-icons/fa6";
 import { IoMdLock } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -22,9 +21,7 @@ const ProfileDetails = ({ userInfo }) => {
 			dispatch(resetLecturerCourses());
 			dispatch(resetStudentCourses());
 			navigate("/login");
-		} catch (error) {
-			console.error(error);
-		}
+		} catch (error) {}
 	};
 
 	return (

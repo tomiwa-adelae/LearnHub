@@ -31,7 +31,6 @@ const MessageInput = ({ selectedConversation }) => {
 			setMessage("");
 		} catch (error) {
 			setShowAlertMessage(error.data.message);
-			console.log(error);
 		}
 	};
 

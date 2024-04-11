@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Course from "../models/courseModel.js";
-import multer from "multer";
 import StudentCourse from "../models/studentCourseModel.js";
 
 // Desc Get all courses
@@ -58,8 +57,6 @@ const getStudentCourses = asyncHandler(async (req, res) => {
 		res.status(404);
 		throw new Error("Internal error occurred! Course not found!");
 	}
-
-	// console.log("Yes");
 });
 
 // Desc create courses as a student
@@ -79,7 +76,6 @@ const createStudentCourse = asyncHandler(async (req, res) => {
 		res.status(404);
 		throw new Error("Internal error occurred! Course not added!");
 	}
-	// const course = await StudentCourse()
 });
 
 export { getAllCourses, createStudentCourse, getStudentCourses };

@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Course from "../models/courseModel.js";
-import multer from "multer";
 
 // Desc Get all courses for logged in lecturer
 // @route GET /api/lecturer-courses

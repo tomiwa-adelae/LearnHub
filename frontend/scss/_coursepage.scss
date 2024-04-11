@@ -72,9 +72,6 @@
 
 	.pdf-display {
 		background-color: rgba($black-color, 0.7);
-		// position: fixed;
-		// top: 0;
-		// left: 0;
 		position: fixed;
 		left: 0;
 		top: 0;
@@ -83,11 +80,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		// z-index: 10;
 
 		.wrapper {
 			background-color: #e5b283;
-			// width: 100%;
 			max-width: 1224px;
 			height: 90vh;
 			margin: auto;
@@ -106,6 +101,7 @@
 				top: 2%;
 				right: 2%;
 				transform: translate(-2%, -2%);
+				z-index: 3;
 			}
 		}
 	}

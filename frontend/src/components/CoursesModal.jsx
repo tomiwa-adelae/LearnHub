@@ -7,14 +7,12 @@ import {
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
 import {
-	createStudentCourse,
 	getCoursesAvailable,
 	getStudentCourses,
 } from "../slices/studentCourseSlice";
 import {
 	useAllCoursesAvailableMutation,
 	useAllStudentCoursesMutation,
-	useNewStudentCourseMutation,
 } from "../slices/studentCourseApiSlice";
 import { BASE_URL, STUDENT_COURSES_URL } from "../slices/constants";
 import axios from "axios";
@@ -36,11 +34,8 @@ const CoursesModal = ({ closeModal }) => {
 
 	const [allCoursesAvailable, { isLoading }] =
 		useAllCoursesAvailableMutation();
-	const [newStudentCourse, { isLoading: loadingStudentCreate }] =
-		useNewStudentCourseMutation();
 
-	const [allStudentCourses, { isLoading: loadingStudent }] =
-		useAllStudentCoursesMutation();
+	const [allStudentCourses] = useAllStudentCoursesMutation();
 
 	useEffect(() => {
 		async function fetchAllCourses() {
@@ -56,7 +51,6 @@ const CoursesModal = ({ closeModal }) => {
 				dispatch(getCoursesAvailable(filteredCourses));
 			} catch (error) {
 				setShowAlertMessage(error.data.message);
-				console.log(error);
 			}
 		}
 
@@ -67,7 +61,6 @@ const CoursesModal = ({ closeModal }) => {
 				dispatch(getStudentCourses(res.data));
 			} catch (error) {
 				setShowAlertMessage(error.data.message);
-				console.log(error);
 			}
 		}
 
@@ -127,7 +120,6 @@ const CoursesModal = ({ closeModal }) => {
 		} catch (error) {
 			setShowAlertMessage(error.data.message);
 			setAddLoading(null);
-			console.log(error);
 		}
 	};
 

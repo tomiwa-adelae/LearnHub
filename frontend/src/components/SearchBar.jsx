@@ -31,7 +31,6 @@ const SearchBar = () => {
 						dispatch(getLecturerCourses(res.data));
 					} catch (error) {
 						setShowAlertMessage(error.data.message);
-						console.log(error);
 					}
 				}
 
@@ -44,7 +43,6 @@ const SearchBar = () => {
 						dispatch(getStudentCourses(res.data));
 					} catch (error) {
 						setShowAlertMessage(error.data.message);
-						console.log(error);
 					}
 				}
 
@@ -65,7 +63,6 @@ const SearchBar = () => {
 						dispatch(getLecturerCourses(res.data));
 					} catch (error) {
 						setShowAlertMessage(error.data.message);
-						console.log(error);
 					}
 				}
 
@@ -78,7 +75,6 @@ const SearchBar = () => {
 						dispatch(getStudentCourses(res.data));
 					} catch (error) {
 						setShowAlertMessage(error.data.message);
-						console.log(error);
 					}
 				}
 
@@ -118,7 +114,6 @@ const SearchBar = () => {
 					Search <IoSendSharp />
 				</button>
 			</form>
-			{/* <SearchableCourses /> */}
 		</div>
 	);
 };

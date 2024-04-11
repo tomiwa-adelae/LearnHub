@@ -1,4 +1,4 @@
-import { IoLogIn, IoLogInSharp } from "react-icons/io5";
+import { IoLogIn } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";

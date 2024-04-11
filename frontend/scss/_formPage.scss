@@ -1,4 +1,12 @@
-.editprofilepage {
+.loginpage,
+.registerpage,
+.newPDFpage,
+.newcoursepage,
+.resetpasswordpage,
+.verifycodepage,
+.updatepasswordpage,
+.editprofilepage,
+.changepasswordpage {
 	padding: 4rem 0;
 
 	.container {
@@ -32,6 +40,13 @@
 
 			small {
 				margin: 0.5rem 0 1rem 0;
+			}
+
+			div {
+				input,
+				select {
+					padding-left: 2.5rem;
+				}
 			}
 		}
 	}

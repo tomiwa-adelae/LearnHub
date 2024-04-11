@@ -122,7 +122,6 @@ h6 {
 			background-color: darken($danger-color, 3%);
 		}
 	}
-
 	&-input {
 		position: absolute;
 		top: 50%;
@@ -219,7 +218,7 @@ form {
 			outline: none;
 			font-weight: bold;
 			font-size: 0.8rem;
-			padding: 1rem 0 1rem 2.5rem;
+			padding: 1rem 1.5rem;
 			border-radius: $radius;
 			background-color: lighten($primary-color, 10%);
 			color: $white-color;
@@ -305,7 +304,6 @@ form {
 			h5 {
 				font-family: "Joti One";
 				text-transform: uppercase;
-				// margin-bottom: 1rem;
 			}
 
 			div {
@@ -360,7 +358,6 @@ form {
 		color: $white-color;
 		box-shadow: rgba($primary-color, 0.14) 0px 1px 8px;
 		overflow-y: scroll;
-		// height: ;
 
 		.head {
 			display: flex;
@@ -383,7 +380,6 @@ form {
 		.courses {
 			margin-top: 2rem;
 			.course {
-				// background-color: #f59c68;
 				color: $black-color;
 				display: flex;
 				align-items: center;
@@ -398,7 +394,6 @@ form {
 					display: flex;
 					align-items: center;
 					justify-content: flex-start;
-					// background-color: blueviolet;
 					gap: 0.5rem;
 				}
 			}
@@ -564,15 +559,13 @@ form {
 }
 
 .skeleton-wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 1rem;
 
 	.course-skeleton {
 		background-color: lighten($grey-color, 5%);
 		height: 300px;
-		width: 400px;
 		padding: 3rem 0;
 		box-shadow: rgba($black-color, 0.14) 0px 1px 8px;
 		display: flex;

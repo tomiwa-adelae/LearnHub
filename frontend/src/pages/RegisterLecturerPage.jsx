@@ -54,7 +54,6 @@ const RegisterLecturerPage = () => {
 			navigate("/dashboard");
 		} catch (error) {
 			setShowAlertMessage(error.data.message);
-			console.log(error);
 		}
 	};
 

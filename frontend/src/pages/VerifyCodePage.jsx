@@ -1,4 +1,4 @@
-import { IoBarcode, IoLogIn, IoLogInSharp } from "react-icons/io5";
+import { IoBarcode, IoLogIn } from "react-icons/io5";
 import Footer from "../components/Footer";
 import { useVerifyCodeMutation } from "../slices/userApiSlice";
 import { useNavigate, useParams } from "react-router-dom";

@@ -48,7 +48,6 @@ const CoursePage = () => {
 				const res = await allPDFsById(id);
 				dispatch(getPDFs(res.data));
 			} catch (error) {
-				console.log(error);
 				setShowAlertMessage(error.data.message);
 			}
 		}
