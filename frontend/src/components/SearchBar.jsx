@@ -5,6 +5,7 @@ import { useAllLecturerCoursesMutation } from "../slices/lecturerCourseApiSlice"
 import { getStudentCourses } from "../slices/studentCourseSlice";
 import { getLecturerCourses } from "../slices/lecturerCourseSlice";
 import { ToastErrorMessage } from "./ToastMessage";
+import { useAllStudentCoursesMutation } from "../slices/studentCourseApiSlice";
 
 const SearchBar = () => {
 	const [search, setSearch] = useState("");
@@ -18,6 +19,8 @@ const SearchBar = () => {
 	const [showAlertMessage, setShowAlertMessage] = useState(null);
 
 	const [allLecturerCourses] = useAllLecturerCoursesMutation();
+
+	const [allStudentCourses] = useAllStudentCoursesMutation();
 
 	useEffect(() => {
 		if (!search) {

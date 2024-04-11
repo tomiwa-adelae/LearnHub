@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastErrorMessage } from "../components/ToastMessage";
 import { useNavigate } from "react-router-dom";
 import { SmallLoader } from "../components/Loader";
+import Meta from "../components/Meta";
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const LoginPage = () => {
 
 	return (
 		<>
+			<Meta title="Login | LearnHub" />
 			<div className="loginpage">
 				<div className="container">
 					<section>

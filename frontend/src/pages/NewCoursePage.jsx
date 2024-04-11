@@ -12,6 +12,7 @@ import {
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
 import { SmallLoader } from "../components/Loader";
+import Meta from "../components/Meta";
 
 const NewCoursePage = () => {
 	const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const NewCoursePage = () => {
 
 	return (
 		<>
+			<Meta title="New Course | LearnHub" />
 			<div className="newcoursepage">
 				<div className="container">
 					<section>

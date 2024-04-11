@@ -13,6 +13,7 @@ import { useLecturerCourseDetailsMutation } from "../slices/lecturerCourseApiSli
 import { useDispatch, useSelector } from "react-redux";
 import { getLecturerCourseById } from "../slices/lecturerCourseSlice";
 import { SmallLoader, LargeLoader } from "../components/Loader";
+import Meta from "../components/Meta";
 
 const NewPDFPage = () => {
 	const { id } = useParams();
@@ -81,6 +82,7 @@ const NewPDFPage = () => {
 
 	return (
 		<>
+			<Meta title="New PDF | LearnHub" />
 			<div className="newPDFpage">
 				{isLoading ? (
 					<LargeLoader />

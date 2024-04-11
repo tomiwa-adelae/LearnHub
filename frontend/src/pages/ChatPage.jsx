@@ -1,16 +1,20 @@
 import ChatSideBar from "../components/ChatSideBar";
 import MessageContainer from "../components/MessageContainer";
+import Meta from "../components/Meta";
 
 const ChatPage = () => {
 	return (
-		<div className="chatpage">
-			<div className="wrapper">
-				<div className="container">
-					<ChatSideBar />
-					<MessageContainer />
+		<>
+			<Meta title="Chat | LearnHub" />
+			<div className="chatpage">
+				<div className="wrapper">
+					<div className="container">
+						<ChatSideBar />
+						<MessageContainer />
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

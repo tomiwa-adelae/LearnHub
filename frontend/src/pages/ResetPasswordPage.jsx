@@ -10,6 +10,7 @@ import {
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
 import { SmallLoader } from "../components/Loader";
+import Meta from "../components/Meta";
 
 const ResetPasswordPage = () => {
 	const navigate = useNavigate();
@@ -41,6 +42,7 @@ const ResetPasswordPage = () => {
 
 	return (
 		<>
+			<Meta title="Reset password | LearnHub" />
 			<div className="resetpasswordpage">
 				<div className="container">
 					<section>

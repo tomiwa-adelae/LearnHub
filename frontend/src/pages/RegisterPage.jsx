@@ -15,6 +15,7 @@ import { SmallLoader } from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 
 const RegisterPage = () => {
 	const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const RegisterPage = () => {
 
 	return (
 		<>
+			<Meta title="Register | LearnHub" />
 			<div className="registerpage">
 				<div className="container">
 					<section>

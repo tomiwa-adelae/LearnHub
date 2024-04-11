@@ -8,6 +8,7 @@ import {
 	ToastErrorMessage,
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
+import Meta from "../components/Meta";
 
 const VerifyCodePage = () => {
 	const { email } = useParams();
@@ -42,6 +43,7 @@ const VerifyCodePage = () => {
 
 	return (
 		<>
+			<Meta title="Verify code | LearnHub" />
 			<div className="verifycodepage">
 				<div className="container">
 					<section>

@@ -10,6 +10,7 @@ import { getLecturerCourseById } from "../slices/lecturerCourseSlice";
 import { LargeLoader } from "../components/Loader";
 import { useAllPDFsByIdMutation } from "../slices/pdfApiSlice";
 import { getPDFs } from "../slices/pdfSlice";
+import Meta from "../components/Meta";
 
 const CoursePage = () => {
 	const { id } = useParams();
@@ -57,6 +58,7 @@ const CoursePage = () => {
 
 	return (
 		<>
+			<Meta title="Course | LearnHub" />
 			<div className="coursepage">
 				<div className="container">
 					{isLoading ? (

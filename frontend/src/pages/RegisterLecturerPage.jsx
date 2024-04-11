@@ -59,6 +59,7 @@ const RegisterLecturerPage = () => {
 
 	return (
 		<>
+			<Meta title="Register Lecturer | LearnHub" />
 			<div className="registerpage">
 				<div className="container">
 					<section>

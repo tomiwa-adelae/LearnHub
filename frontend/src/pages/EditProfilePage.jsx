@@ -14,6 +14,7 @@ import {
 	ToastErrorMessage,
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
+import Meta from "../components/Meta";
 
 const EditProfilePage = () => {
 	const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const EditProfilePage = () => {
 
 	return (
 		<>
+			<Meta title="Edit profile | LearnHub" />
 			<div className="editprofilepage">
 				<div className="container">
 					<section>

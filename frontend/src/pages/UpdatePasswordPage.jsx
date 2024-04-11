@@ -9,6 +9,7 @@ import {
 	ToastSuccessMessage,
 } from "../components/ToastMessage";
 import { SmallLoader } from "../components/Loader";
+import Meta from "../components/Meta";
 
 const UpdatePasswordPage = () => {
 	const navigate = useNavigate();
@@ -53,6 +54,7 @@ const UpdatePasswordPage = () => {
 
 	return (
 		<>
+			<Meta title="Update password | LearnHub" />
 			<div className="updatepasswordpage">
 				<div className="container">
 					<section>

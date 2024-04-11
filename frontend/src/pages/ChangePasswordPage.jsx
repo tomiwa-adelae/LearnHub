@@ -11,6 +11,7 @@ import {
 } from "../components/ToastMessage";
 import { SmallLoader } from "../components/Loader";
 import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 
 const ChangePasswordPage = () => {
 	const navigate = useNavigate();
@@ -52,6 +53,7 @@ const ChangePasswordPage = () => {
 
 	return (
 		<>
+			<Meta title="Change password | LearnHub" />
 			<div className="changepasswordpage">
 				<div className="container">
 					<section>
