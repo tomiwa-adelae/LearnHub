@@ -270,10 +270,11 @@
 						}
 
 						.message-wrapper {
-							height: calc(100vh - 150px);
+							height: calc(100vh - 120px);
 							margin-top: 70px;
 
 							.messages {
+								z-index: 1;
 								.message {
 									img {
 										width: 35px;
