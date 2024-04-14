@@ -9,7 +9,7 @@
 			gap: 0.5rem;
 			max-height: calc(100vh - 100px);
 			overflow-y: hidden;
-			border-top: 1px solid $primary-color;
+			// border-top: 1px solid $primary-color;
 
 			.chat-side-bar {
 				.chat-search-bar {
@@ -141,8 +141,14 @@
 			}
 
 			.message-container {
+				background-image: linear-gradient(
+					to right bottom,
+					darken($white-color, 5%),
+					$white-color,
+					darken($white-color, 8%)
+				);
 				width: 100%;
-				border-left: 1px solid $primary-color;
+				// border-left: 1px solid $primary-color;
 				@include transition();
 
 				.no-chat-selected {

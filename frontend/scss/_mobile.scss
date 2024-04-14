@@ -250,11 +250,13 @@
 					}
 
 					.chat-selected {
-						// height: 100vh;
 						height: 100dvh;
 						justify-content: space-between;
 
 						.header {
+							position: fixed;
+							top: 0;
+							left: 0;
 							.details {
 								.back-btn {
 									display: block;
@@ -267,7 +269,8 @@
 						}
 
 						.message-wrapper {
-							height: calc(100vh - 70px);
+							height: calc(100vh - 120px);
+							margin-top: 70px;
 
 							.messages {
 								.message {
@@ -275,6 +278,12 @@
 										width: 35px;
 									}
 								}
+							}
+
+							.message-input {
+								position: fixed;
+								bottom: 0;
+								left: 0;
 							}
 						}
 					}
