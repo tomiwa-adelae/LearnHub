@@ -427,6 +427,34 @@
 		}
 	}
 
+	.coursepage {
+		.container {
+			.course-materials {
+				.materials {
+					.material {
+						.pdf-icon {
+							font-size: 5rem;
+						}
+					}
+				}
+			}
+		}
+
+		.pdf-display {
+			.wrapper {
+				height: 100vh;
+
+				padding: 2rem;
+
+				.btn {
+					top: 1%;
+					right: 1%;
+					transform: translate(-1%, -1%);
+				}
+			}
+		}
+	}
+
 	.profilepage {
 		.container {
 			.profile-details {
