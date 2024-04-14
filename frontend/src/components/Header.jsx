@@ -3,6 +3,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoLogIn } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { FaRegistered } from "react-icons/fa6";
 
 const Header = () => {
 	const { userInfo } = useSelector((state) => state.auth);
@@ -45,7 +46,7 @@ const Header = () => {
 								</Link>
 								<Link to="/register">
 									<span>Register</span>
-									<IoLogIn />
+									<FaRegistered />
 								</Link>
 							</>
 						)}
