@@ -49,7 +49,21 @@ const ChatSelected = ({ selectedConversation }) => {
 				<div className="header">
 					<div className="details">
 						<IoArrowBack
-							onClick={() => dispatch(setConversation(null))}
+							onClick={() => {
+								dispatch(setConversation(null));
+
+								async function fetchConversations() {
+									try {
+										setShowAlertMessage(null);
+										const res = await allConversations();
+										dispatch(getConversations(res.data));
+									} catch (error) {
+										setShowAlertMessage(error.data.message);
+									}
+								}
+
+								fetchConversations();
+							}}
 							className="back-btn"
 						/>
 						<img
