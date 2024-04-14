@@ -25,7 +25,7 @@
 					overflow-y: scroll;
 					.active-chats {
 						padding-top: 1rem;
-						border-bottom: 1px solid $primary-color;
+						border-bottom: 1px dotted $primary-color;
 
 						h4 {
 							font-family: "Joti One";
@@ -77,12 +77,12 @@
 
 					.conversations {
 						.conversation {
-							border-top: 1px solid $primary-color;
+							border-top: 1px dotted $primary-color;
 							display: flex;
 							align-items: center;
 							justify-content: space-between;
 							gap: 1rem;
-							padding: 1rem;
+							padding: 0.75rem 0.5rem;
 							cursor: pointer;
 							@include transition();
 
@@ -141,12 +141,6 @@
 			}
 
 			.message-container {
-				background-image: linear-gradient(
-					to right bottom,
-					darken($white-color, 5%),
-					$white-color,
-					darken($white-color, 8%)
-				);
 				width: 100%;
 				// border-left: 1px solid $primary-color;
 				@include transition();
@@ -178,13 +172,19 @@
 					justify-content: center;
 					flex-direction: column;
 					width: 100%;
+					background-image: linear-gradient(
+						to right bottom,
+						darken($white-color, 5%),
+						$white-color,
+						darken($white-color, 8%)
+					);
 
 					.header {
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
 						padding: 0.5rem 1rem;
-						border-bottom: 1px solid $primary-color;
+						border-bottom: 1px dotted $primary-color;
 						width: 100%;
 						height: 70px;
 
