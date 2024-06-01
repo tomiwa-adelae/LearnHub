@@ -290,6 +290,7 @@ form {
 		gap: 1rem;
 		.course {
 			cursor: pointer;
+			border: 2px dotted #6bf568;
 			border-radius: $radius;
 			text-align: center;
 			width: 100%;
@@ -590,4 +591,30 @@ form {
 			animation: skeletonLoading 4s linear infinite alternate;
 		}
 	}
+}
+
+.upload-modal {
+	border: 2px dotted $white-color;
+	height: 4rem;
+	color: $white-color;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 0.5rem;
+	border-radius: 5px;
+}
+
+.modal-active {
+	border: 2px dotted $secondary-color;
+	font-weight: bold;
+	height: 4rem;
+	color: $white-color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 0.5rem;
+	border-radius: 5px;
 }

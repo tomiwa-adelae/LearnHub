@@ -9,6 +9,7 @@ import {
 	resetPassword,
 	verifyCode,
 	updateNewPassword,
+	uploadProfileImage,
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -23,5 +24,6 @@ router.post("/logout", logoutUser);
 router.route("/reset-password").post(resetPassword);
 router.route("/verify-code").post(verifyCode);
 router.route("/update-password/:id/:code").post(updateNewPassword);
+router.route("/image").put(protect, uploadProfileImage);
 
 export default router;

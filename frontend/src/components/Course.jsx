@@ -4,7 +4,7 @@ const Course = ({ course }) => {
 	return (
 		<Link to={`/course/${course._id}`}>
 			<div
-				style={{ backgroundColor: `${course.courseColor}` }}
+				style={{ borderColor: `${course.courseColor}` }}
 				className="course"
 			>
 				<h5>

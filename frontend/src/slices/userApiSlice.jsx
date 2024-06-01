@@ -37,6 +37,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
 				body: data,
 			}),
 		}),
+		changeUserImage: builder.mutation({
+			query: (data) => ({
+				url: `${USERS_URL}/image`,
+				method: "PUT",
+				body: data,
+			}),
+		}),
 		updatePassword: builder.mutation({
 			query: (data) => ({
 				url: `${USERS_URL}/password`,
@@ -78,4 +85,5 @@ export const {
 	useResetPasswordMutation,
 	useVerifyCodeMutation,
 	useUpdateNewPasswordMutation,
+	useChangeUserImageMutation,
 } = userApiSlice;

@@ -113,6 +113,74 @@ const RegisterLecturerPage = () => {
 								onChange={(e) => setDepartment(e.target.value)}
 							>
 								<option value="">Select department</option>
+								<option value="Accounting & Finance">
+									Accounting & Finance
+								</option>
+								<option value="Agricultural economics">
+									Agricultural economics
+								</option>
+								<option value="Architecture">
+									Architecture
+								</option>
+								<option value="Banking & Finance">
+									Banking & Finance
+								</option>
+								<option value="Biochemistry">
+									Biochemistry
+								</option>
+								<option value="Business Administration">
+									Business Administration
+								</option>
+								<option value="Civil Engineering">
+									Civil Engineering
+								</option>
+								<option value="Computer Engineering">
+									Computer Engineering
+								</option>
+								<option value="Computer Science">
+									Computer Science
+								</option>
+								<option value="Computer Science(ICT Option)">
+									Computer Science(ICT Option)
+								</option>
+								<option value="Crop & Animal Science">
+									Crop & Animal Science
+								</option>
+								<option value="Economics">Economics</option>
+								<option value="Electrical Engineering">
+									Electrical Engineering
+								</option>
+								<option value="English">English</option>
+								<option value="Entrepreneurship studies">
+									Entrepreneurship studies
+								</option>
+								<option value="Environmental Health Science">
+									Environmental Health Science
+								</option>
+								<option value="Estate Management">
+									Estate Management
+								</option>
+								<option value="Geo-Informatics">
+									Geo-Informatics
+								</option>
+								<option value="Geology">Geology</option>
+								<option value="History">History</option>
+								<option value="Industrial Chemistry">
+									Industrial Chemistry
+								</option>
+								<option value="Industrial Relations & Personnel Management">
+									Industrial Relations & Personnel Management
+								</option>
+								<option value="International Studies">
+									International Studies
+								</option>
+								<option value="Law">Law</option>
+								<option value="Library & Information Science">
+									Library & Information Science
+								</option>
+								<option value="Mass Communication">
+									Mass Communication
+								</option>
 								<option value="Mathematics">Mathematics</option>
 								<option value="Mechanical Engineering">
 									Mechanical Engineering
@@ -127,6 +195,24 @@ const RegisterLecturerPage = () => {
 								<option value="Peace Studies & Conflict Resolution">
 									Peace Studies & Conflict Resolution
 								</option>
+								<option value="Performing Arts & Musics">
+									Performing Arts & Musics
+								</option>
+								<option value="Physics">Physics</option>
+								<option value="Political Science">
+									Political Science
+								</option>
+								<option value="Radiography & Radiation Science">
+									Radiography & Radiation Science
+								</option>
+								<option value="Radiography & Radiation Science">
+									Radiography & Radiation Science
+								</option>
+								<option value="Religious Studies">
+									Religious Studies
+								</option>
+								<option value="Statistics">Statistics</option>
+								<option value="Surveying">Surveying</option>
 							</select>
 							<FcDepartment />
 						</div>
@@ -158,6 +244,12 @@ const RegisterLecturerPage = () => {
 								</option>
 								<option value="Natural Science">
 									Natural Science
+								</option>
+								<option value="Peace Studies & Conflict Resolution">
+									Peace Studies & Conflict Resolution
+								</option>
+								<option value="Social Science">
+									Social Science
 								</option>
 							</select>
 							<FcDepartment />

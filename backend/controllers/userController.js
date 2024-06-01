@@ -7,6 +7,7 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import Token from "../models/tokenModel.js";
+import cloudinary from "../middleware/cloudinaryMiddleware.js";
 
 const mailjet = Mailjet.apiConnect(
 	process.env.MAILJET_API_PUBLIC_KEY,
@@ -410,6 +411,81 @@ const updateNewPassword = asyncHandler(async (req, res) => {
 	}
 });
 
+// @desc    Update a user image
+// @route   PUT /api/users/:id/image
+// @access  Private
+const uploadProfileImage = asyncHandler(async (req, res) => {
+	const { profilePicture } = req.body;
+	const user = await User.findById(req.user._id);
+
+	if (user) {
+		if (user.profilePictureId) {
+			await cloudinary.uploader.destroy(user.profilePictureId, {
+				invalidate: true,
+			});
+
+			const uploadResponse = await cloudinary.uploader.upload(
+				profilePicture,
+				{
+					upload_preset: "learnhub",
+				}
+			);
+
+			user.profilePicture = uploadResponse.secure_url;
+			user.profilePictureId = uploadResponse.public_id;
+
+			const updatedUser = await user.save();
+
+			const token = generateToken(res, updatedUser._id);
+
+			res.json({
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+				matricNumber: updatedUser.matricNumber,
+				phoneNumber: updatedUser.phoneNumber,
+				level: updatedUser.level,
+				department: updatedUser.department,
+				faculty: updatedUser.faculty,
+				profilePicture: updatedUser.profilePicture,
+				isLecturer: updatedUser.isLecturer,
+				token,
+			});
+		} else {
+			const uploadResponse = await cloudinary.uploader.upload(
+				profilePicture,
+				{
+					upload_preset: "learnhub",
+				}
+			);
+
+			user.profilePicture = uploadResponse.secure_url;
+			user.profilePictureId = uploadResponse.public_id;
+
+			const updatedUser = await user.save();
+
+			const token = generateToken(res, updatedUser._id);
+
+			res.json({
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+				matricNumber: updatedUser.matricNumber,
+				phoneNumber: updatedUser.phoneNumber,
+				level: updatedUser.level,
+				department: updatedUser.department,
+				faculty: updatedUser.faculty,
+				profilePicture: updatedUser.profilePicture,
+				isLecturer: updatedUser.isLecturer,
+				token,
+			});
+		}
+	} else {
+		res.status(400);
+		throw new Error("Internal server error!");
+	}
+});
+
 export {
 	authUser,
 	registerUser,
@@ -420,4 +496,5 @@ export {
 	resetPassword,
 	verifyCode,
 	updateNewPassword,
+	uploadProfileImage,
 };

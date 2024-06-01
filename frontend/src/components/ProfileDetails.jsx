@@ -1,5 +1,6 @@
 import { IoMdLock } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
+import { CiImageOn } from "react-icons/ci";
 import { MdEditSquare } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/userApiSlice";
@@ -43,6 +44,13 @@ const ProfileDetails = ({ userInfo }) => {
 					<Link to="/edit-profile" className="btn btn-grey">
 						Edit profile
 						<MdEditSquare />
+					</Link>
+					<Link
+						to="/change-profile-picture"
+						className="btn btn-primary"
+					>
+						Change image
+						<CiImageOn />
 					</Link>
 					<Link to="/change-password" className="btn btn-secondary">
 						Change password

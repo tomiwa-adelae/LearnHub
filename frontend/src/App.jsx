@@ -21,6 +21,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ChatPage from "./pages/ChatPage";
 import PrivateRoute from "./components/PrivateRoute";
+import ChangeProfilePicturePage from "./pages/ChangeProfilePicturePage";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	"pdfjs-dist/build/pdf.worker.min.js",
@@ -56,6 +57,10 @@ function App() {
 					<Route path="/new-course" element={<NewCoursePage />} />
 					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/edit-profile" element={<EditProfilePage />} />
+					<Route
+						path="/change-profile-picture"
+						element={<ChangeProfilePicturePage />}
+					/>
 					<Route
 						path="/change-password"
 						element={<ChangePasswordPage />}

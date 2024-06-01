@@ -82,9 +82,11 @@ header {
 
 					img {
 						width: 40px;
+						height: 40px;
 						border-radius: 100%;
 						vertical-align: middle;
 						margin-right: 0.5rem;
+						object-fit: cover;
 					}
 
 					&:hover {
