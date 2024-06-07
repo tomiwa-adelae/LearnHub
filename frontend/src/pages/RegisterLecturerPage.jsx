@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Meta from "../components/Meta";
+
 
 const RegisterLecturerPage = () => {
 	const dispatch = useDispatch();
